@@ -1,4 +1,9 @@
+var vowels;
+var consonants;
+var chance;
+
 $(document).ready(function() {
+
 var grammar = tracery.createGrammar({
 
   //---------------------------------------------------------------
@@ -74,18 +79,29 @@ var grammar = tracery.createGrammar({
 "#directions#",
 ],
 
+"food":["milk","butter","cheese","meat","beer","bread","radish","sprout","cutlet","roll","pie","cake","wine","pudding","jam","honey","crisp","pop","quince","apple","plum","damson","pear","cider"],
 
-"events":[],
+"bodilyfunction":["cough","sneeze","drip","step",""],
 
-"names":[],
+"abstract_nouns":["love","pride","hope","grace"],
 
-"naturalfeatures":[],
+"itemsandtools":["plane","lace","mill","axe","hoop","stick","brush","pan","rake","riddle","chisel","charm", "tang"],
 
-"animals":[],
+"events":["burn","hang","war","battle","meet" "lunch", "mulch","fight",""],
 
-"supernatural":[],
+"building":["court"],
 
-"ecclesiastical":["sister", "abbot", "canon", "charter", "child", "temple", "friar","abbey","brother",],
+"names":["martin","david",""],
+//old english etc.
+"naturalfeatures":["river","hill","beck","burn","rill","brook","mount","heather","elm","beech","oak","ash","thorn","sun","moon","star","rime","bloom","broom","flower","gorse","rock","stone","scree","iron","holly","ivy","vine","birch","box","hop"],
+
+"character":["knave","squire","knight","lord","beggar","monger","king","queen","duke","earl"],
+
+"animals":["fox","hare","coney","bat","roe","boar","bear","wolf","palfrey","steed","charger","deer","bee","fly","cod","herring","ling","mouse","beetle","hornet","wasp","gull","whelp","pup","dog","hound",],
+
+"supernatural":["hob","pock","angel",""],
+
+"ecclesiastical":["sister", "abbot", "canon", "charter", "child", "temple", "friar","abbey","brother","church","cross","apse","nave","altar","shrine"],
 
 "colours":["red","green","yellow","dun","dark","light","blue","gold","silver","rud","burnt","white", "black","tan"],
 
@@ -93,15 +109,19 @@ var grammar = tracery.createGrammar({
 
 "directions":["north", "south", "east", "west","up","down"],
 
+"times":["night","day","light","dark","eve",""]
+
 "add_s":["s"],
 
+"from rest":["ash","wick","rick","ladder","holt","mark","bed","head","moor","mere","bridge","mile","bar","ten","hurst","hirst","by","bi","neck","tox","pox","sox","dox","fox","hox","lox","box","mast","horn","hurl","dray","cott","barn","stoke","coombe","combe","chester","caster","bore","ham","gran","hen","berk","birk","beck","den","dean","dale","holm","dun","seed","well","kiln","field","cant","purl","youth","roll","war","wort","wirt","wing","nut","tole","toll","night","day","leave","blew","blow","mink","monk","honk","queen","duke","latch","maul","growl","pell","mell",
+"bight","hun","hell","mist","must","thirst","hunger","wrath","wroth","rage","sniff","grunt","hawk","spit","bellow","spittle","pot","pit","pet","belt","grin","fist","cough", "hott", "rink",  "flip", "whoop", "slip", "funge", "gel", "paste", "russet", "murk", "fen", "fag", "crag", "lick", "lap", "finger", "pulse", "lake", "pond", "purse", "oak", "mince", "pea", "stone", "chat", "chin", "vest", "string", "grease", "grond", "george", "ox", "fret", "first", "silt", "bog", "brook", "heck", "foot", "toe", "fig", "burp", "belch", "pert", "perf", "hoop", "wool", "moll", "fort", "eel", "grub", "yeast", "burn", "purple", "meddle", "drape", "grope", "cant",  "horse", "donk", "scare", "snare", "lair", "scutch"],
 
 // ----------------------------------------------------------------------
 
 "name_ending":[
 "ash", "beech", "beach",
 
-"earth","read",
+"earth","read","court","meet",
 
 "wash","mouth","harbour","ferry","head", "bed","sea","cliffe","cliff","port",
 
@@ -161,45 +181,90 @@ var grammar = tracery.createGrammar({
 
 "tail", "green", "sester", "vester", "fester",
 
-"spleen", "van", "car", "scar", "scree", "hill", "hull", "ville", "field",
+"spleen", "van", "car", "scar", "scree", "hill", "hull", "ville", "field","right",
 
-"ley", "gey", "gay", "ridge", "forth", "worth", "cross", "age", "notch", "worthy, "loo",
+"ley", "gey", "gay", "ridge", "forth", "worth", "cross", "age", "notch", "worthy", "loo",
 
 "stake", "gate", "door", "leap", "jump", "park", "strike", "fast", "rock", "slick", "slury",
 "lip", "candle", "hunt", "shunt", "tall", "fall", "gall", "end", "start",
 
 "north", "south", "east", "west",
 ]
-
-
-
-
-
-
-
-
-
-
-
-all the variants
-swapping out consonants
-en-le
-group them by type.
-chapel
-"n_firstpart":[
-"ash","ast","wick","ladder","holt","bur","bir","ber","tren","mar","bed","head","mor","mer","ton","bridge","mil","bar","ten","tun","hurst","hirst","by","bi","car","neck","fil","ley","lee","mast","horn","hurl","dray","cott","barn","arn","stoke","car","coombe","combe","chester","caster","bor","bore","ham","gran","hen","moor","burn","birn","berk","birk","beck","den","dean","dale","holm","dun", "seed","well","hob","foss","kin","ness","nor","feald","cant","thorn","pirl","purl","youl","roll","wor","war","wer","wort","wirt","wing","nut","tole","toll",
-
-"tox","pox","sox","dox","fox","hox","lox","box",
-
-"night","ched","chud","bis","bes","blew","blow","mink","monk","queens","dukes","latch","morking","melling","bigh","hen","hun","hel","mist","must","rill","thirst","wrath","wroth","rage","snif","grunt","hawk","spit","spittle","pot","pit","pet","belt","grin","fist","cough","sniff", "blew", "hott", "rink", "bilge", "bligh", "vell", "flip", "whoop", "slip", "funge", "gel", "paste", "hawk", "russ", "murk", "fen", "hors", "fag", "lick", "lap", "finger", "pulse", "river", "lake", "pond", "purs", "oak", "mince", "pea", "stone", "chat", "chin", "vest", "string", "grese", "grond", "phil", "george", "tarquin", "ux", "ox", "oxo", "toll", "stix", "vell", "frell", "fret", "frett", "first", "honk", "silt", "bog", "brook", "heck", "foot", "toe", "vig", "fig", "burp", "belch", "purt", "pert", "perf", "hoop", "wool", "cott", "mell", "moll", "fort", "eil", "grub", "yeast", "burn", "vert",  "green", "red", "russ", "purple", "meddle", "drape", "grope", "cant", "feg", "blow", "horse", "donk", "scare", "snare", "slair", "scutt", "futt", "blunch", "lunch", "tidd", "con", "cock", "shel", "mast"],
-
-
-
-
-
 });
 
 grammar.addModifiers(baseEngModifiers);
 var placename = grammar.flatten("#placenamefinal#");
+
+vowels = ["a", "e", "i", "o", "u"];
+consonants = "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
+var namearray = placename.split("");
+
+//Removing any triplicate letters.
+
+var twolettersago = "";
+var previousLetter = "";
+
+for (i=0; i< namearray.length; i++) {
+twolettersago = namearray[i - 2];
+previousLetter = namearray[i - 1];
+
+if (previousLetter == namearray[i] && twolettersago == namearray[i]) {
+namearray.splice(i,1);
+}
+}
+
+//Chance to remove doubled letters.
+
+var previousLetter = "";
+
+if percentageChance(10) {
+for (i=0; i < namearray.length; i++) {
+previousLetter = namearray[i - 1];
+if (previousLetter == namearray[i]) {
+namearray.splice(i,1);
+}
+}
+}
+
+//Chance to swap vowels, or consonants.
+
+if percentageChance(10) {
+var voweltocheck = vowels[randomChoiceFromArray(vowels)];
+var vowelpos = namearray.indexOf(voweltocheck);
+
+}
+
+if percentageChance(10) {
+var contocheck = consonants[randomChoiceFromArray(consonants)];
+var conpos = namearray.indexOf(contocheck);
+}
+
+
+//Chance to change a vowel <-> consonant, and vice versa. (Lenition and fortition)
+
+//Chance to remove a vowel or consonant. (Elision)
+
+//Chance for an addition of a vowel or consonant. (Epenthesis)
+
+//Chance to double consonant.
+
 $('#placestext').text(placename);
 });
+
+
+function percentageChance(p) {
+chance = random(100);
+if (chance <= p) {
+return true;
+} else {
+  return false;
+}
+}
+
+function randomChoiceFromArray(array) {
+
+var rand = math.random();
+rand *= array.length;
+rand = Math.floor(rand);
+return rand;
+}
