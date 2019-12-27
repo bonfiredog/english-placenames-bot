@@ -101,7 +101,7 @@ var grammar = tracery.createGrammar({
 
 "supernatural":["hob","pock","angel",""],
 
-"ecclesiastical":["sister", "abbot", "canon", "charter", "child", "temple", "friar","abbey","brother","church","cross","apse","nave","altar","shrine"],
+"ecclesiastical":["sister", "abbot", "canon", "charter", "child", "temple", "friar","abbey","brother","church","cross","apse","nave","altar","shrine","monk"],
 
 "colours":["red","green","yellow","dun","dark","light","blue","gold","silver","rud","burnt","white", "black","tan"],
 
@@ -192,8 +192,21 @@ var grammar = tracery.createGrammar({
 ]
 });
 
+hill,
+abbots (possessives in first word)
+village, town, road green, round, park, down, mas, all, old, barrow, moss, min, don, baker, butcher, dock, shire, foot, hand, top,. fell, ay, wey, low, 
+
+
+
+
+
 grammar.addModifiers(baseEngModifiers);
 var placename = grammar.flatten("#placenamefinal#");
+
+
+//------------------------- PHONOLOGY
+
+console.log("//------------------------------ PHONOLOGY");
 
 vowels = ["a", "e", "i", "o", "u"];
 consonants = "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
@@ -210,6 +223,7 @@ previousLetter = namearray[i - 1];
 
 if (previousLetter == namearray[i] && twolettersago == namearray[i]) {
 namearray.splice(i,1);
+console.log("Removed triplicate letters: " + i + ".");
 }
 }
 
@@ -222,38 +236,144 @@ for (i=0; i < namearray.length; i++) {
 previousLetter = namearray[i - 1];
 if (previousLetter == namearray[i]) {
 namearray.splice(i,1);
+console.log("Removed doubled letters: " + i + ".");
 }
 }
+
 }
 
 //Chance to swap vowels, or consonants.
-
 if percentageChance(10) {
+
+//Choose a vowel, and find it in the name. If it isn't there, choose another.
+while (namearray.includes(voweltocheck) != true) {
 var voweltocheck = vowels[randomChoiceFromArray(vowels)];
-var vowelpos = namearray.indexOf(voweltocheck);
-
 }
+
+//Substitute it for another.
+var vowelpos = namearray.indexOf(voweltocheck);
+var vowelsub = randomChoiceFromArray(vowels);
+namearray[vowelpos] = vowelsub;
+console.log("Substituted " + voweltocheck + " for " + vowelsub + " at position " + vowelpos + ".");
+}
+
 
 if percentageChance(10) {
-var contocheck = consonants[randomChoiceFromArray(consonants)];
-var conpos = namearray.indexOf(contocheck);
+
+//Choose a consonant, and find it in the name. If it isn't there, choose another.
+while (namearray.includes(consonanttocheck) != true) {
+var consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+}
+
+//Substitute it for another.
+var conpos = namearray.indexOf(consonanttocheck);
+var consub = randomChoiceFromArray(consonants);
+namearray[conpos] = consub;
+console.log("Substituted " + consonanttocheck + " for " + consub + " at position " + conpos + ".");
 }
 
 
-//Chance to change a vowel <-> consonant, and vice versa. (Lenition and fortition)
+//Chance to change a vowel or consonant (Lenition and fortition)
 
-//Chance to remove a vowel or consonant. (Elision)
+if percentageChance(10) {
+
+var swapchart1 = ["t","p","v","z","e","a","i","o","u","e","b","c","f","n","p"]
+var swapchart2 = ["d","b","f","s","a","e","e","u","o","i","v","g","h","m","f"]
+
+//Pick a random letter in word.
+var randompos = 2 + Math.floor(Math.random() * namearray.length);
+var chartoswap = namearray[randompos];
+
+//Change according to swap chart.
+if (vowels.includes(chartoswap)) {
+var swappos = swapchart1.indexOf(chartoswap);
+namearray[randompos] = swapchart2[swappos];
+}
+else if (consonants.includes(chartoswap)) {
+var swappos = swapchart1.indexOf(chartoswap);
+namearray[randompos] = swapchart2[swappos];
+}
+console.log("Swapped " + chartoswap + " for " + namearray[randompos] + ".");
+}
 
 //Chance for an addition of a vowel or consonant. (Epenthesis)
 
-//Chance to double consonant.
+if percentageChance(10) {
 
-$('#placestext').text(placename);
+var vowelorcon = ["v","c"];
+var epenchoice = randomChoiceFromArray(vowelorcon);
+
+if (epenchoice == "v") {
+
+voweltocheck = "";
+//Choose a vowel, and find it in the name. If it isn't there, choose another.
+while (namearray.includes(voweltocheck) != true) {
+var voweltocheck = vowels[randomChoiceFromArray(vowels)];
+}
+
+var vowelpos2 = namearray.indexOf(voweltocheck);
+var vowelinsert = voweltocheck + voweltocheck;
+namearray[vowelpos2] = vowelinsert;
+console.log("Doubled " + voweltocheck + ".");
+
+} else if (epenchoice == "c") {
+
+consonanttocheck = "";
+
+//Choose a consonant, and find it in the name. If it isn't there, choose another.
+while (namearray.includes(consonanttocheck) != true) {
+var consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+}
+
+var conpos2 = namearray.indexOf(contocheck);
+var coninsert = contocheck + contocheck;
+namearray[conpos2] = coninsert;
+console.log("Doubled " + contocheck + ".");
+
+}
+}
+
+//Chance to remove a vowel or consonant. (Elision)
+
+if percentageChance(10) {
+
+var elchoice = randomChoiceFromArray(vowelorcon);
+
+if (elchoice == "v") {
+
+voweltocheck = "";
+//Choose a vowel, and find it in the name. If it isn't there, choose another.
+while (namearray.includes(voweltocheck) != true) {
+var voweltocheck = vowels[randomChoiceFromArray(vowels)];
+}
+
+var vowelpos3 = namearray.indexOf(voweltocheck);
+namearray[vowelpos3] = "";
+console.log("Removed " + voweltocheck + ".");
+
+} else if (elchoice == "c") {
+
+consonanttocheck = "";
+//Choose a consonant, and find it in the name. If it isn't there, choose another.
+while (namearray.includes(consonanttocheck) != true) {
+var consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+}
+var conpos3 = namearray.indexOf(contocheck);
+namearray[conpos3] = "";
+console.log("Removed " + contocheck + ".");
+}
+}
+
+//Put the name array back into a string.
+var placenameveryfinal = namearray.toString();
+$('#placestext').text(placenameveryfinal);
 });
 
 
+//---------------------------------- SCRIPTS
+
 function percentageChance(p) {
-chance = random(100);
+var chance = random(100);
 if (chance <= p) {
 return true;
 } else {
