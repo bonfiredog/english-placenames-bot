@@ -10,12 +10,44 @@
 <script src="placesgrammar.js"></script>
 <title>The English Places</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+
+<script>
+var $form = $('form#tplacenameform'),
+    url = 'https://script.google.com/macros/s/AKfycbzgyCpnq8kedAYg4umlUfh9xjL1lLquyQKCjbJDLnRP9yLwblMN/exec'
+
+$('#submit-form').on('click', function(e) {
+  e.preventDefault();
+  var jqxhr = $.ajax({
+    url: url,
+    method: "GET",
+    dataType: "json",
+    data: $form.serializeObject()
+  }).success(
+    console.log("Successfully submitted name and etymology to form.")
+  );
+})
+</script>
+
 </head>
 <body>
 
-<div id="placestext">
+<main>
+<div id="instructions">
+Here are some instructions.
 </div>
-Put them onto a Google Sheet
-A button for 'this feels wrong in my bones'.
+
+<form id="placenameform">
+<input id="placestext" type="text" name="place_name" />
+<input type="text" name="place_etymology"/>
+
+<button type="submit"id="submit-form">Submit</button>
+
+</form>
+
+
+<div id="again" class="button">Again</div>
+<div id="no" class="button">This Feels Wrong In My Bones!</div>
+</main>
+
 </body>
 </html>

@@ -1,0 +1,28 @@
+html {
+width:100%;
+}
+
+body {
+width:100%;
+}
+
+main {
+width:70%;
+margin-left:auto;
+margin-right:auto;
+display:block;
+margin-top:4%;
+margin-bottom:4%;
+max-height:1200px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.button {
+border: 2px solid black;
+padding:1%;
+width:30%;
+text-align:center;
+display:inline-block;
+}
