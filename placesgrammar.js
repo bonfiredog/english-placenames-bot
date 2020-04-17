@@ -1,12 +1,7 @@
 //ISSUES
 //Mutations more often take place in longer (3 clause) words. Less often in one clause words.
-//Add options to names: brainstorm for not word ending, check through for word ending.
 //Repeating elements across two words? Less often please!
-//Two words' second word should be two clauses OR a nameending.
-//If three clause, middle clause MUST be short.
 //Fix Google Sheet
-//Do mutations on the notnameendings, NOT nameendings.
-//3 clause names should be 1 nne, 2 ne. (ing as one)
 
 var nameendingpool = [];
 var notnameendingpool = [];
@@ -62,6 +57,14 @@ for (k=0; k < clausepoolsize; k++) {
 
 console.log("All name element pools generated.");
 
+console.log("//---------------------------- OPTIONAL MUTATIONS")
+
+//Cycle through each of the possible names, applying mutations to them.
+for (o = 0; o < notnameendingpool.length; o++) {
+  optionalMutations(notnameendingpool[o], o);
+}
+
+
 console.log("//---------------------------- NAME POOL GENERATION");
 
 // Take random name endings and notnameendings from the pools, and construct a pool of name types, making sure that elements are not repeated wholesale in names.
@@ -92,14 +95,10 @@ oneword2 = generateName(3,1);
 
 //Generate two words.
 
-if (percentageChance(25)) {
-twowords  = generateName(1,1) + " " + generateName(1,1);
-} else if (percentageChance(25)) {
-twowords  = generateName(2,1) + " " + generateName(2,1);
-} else if (percentageChance(25)) {
-twowords  = generateName(1,1) + " " + generateName(2,1);
+if (percentageChance(50)) {
+twowords  = generateName(2,2);
 } else {
-twowords  = generateName(2,1) + " " + generateName(1,1);
+twowords  = generateName(1,2);
 }
 
 // Place finalised names into an array.
@@ -108,19 +107,10 @@ placenamepool.push(oneword);
 placenamepool.push(oneword2);
 placenamepool.push(twowords);
 
-console.log("Names generated: " + placenamepool[0] + ", " + placenamepool[1] + ", " + placenamepool[2] + ", " + placenamepool[3] + ", Nighthead.");
-
-console.log("//---------------------------- OPTIONAL MUTATIONS")
-
-//Cycle through each of the possible names, applying mutations to them.
-for (o = 0; o < placenamepool.length; o++) {
-  optionalMutations(placenamepool[o], o);
-}
-
-finalsmallword = placenamepool[0].capitalize();
-finaloneword = placenamepool[1].capitalize();
-finaloneword2 = placenamepool[2].capitalize();
-finaltwoword = placenamepool[3].capitalize();
+finalsmallword = smallword.capitalize();
+finaloneword = oneword.capitalize();
+finaloneword2 = oneword2.capitalize();
+finaltwoword = twowords.capitalize();
 
 
 console.log("Final name elements (with mutations): " + finalsmallword + ", " + finaloneword + ", " + finaloneword2 + ", " + finaltwoword + ", Nighthead.");
@@ -195,10 +185,10 @@ var grammar = tracery.createGrammar({
 "burn","hang","war","battle","meet", "lunch", "mulch","fight","reave","fall", "leap", "preach", "melt", "crush", "fair", "graze", "rob", "harvest", "raid", "tack", "hunt", "poach", "steal", "theft", "crop", "winnow", "cast", "tumble", "crash", "chop", "swing", "squabble", "jape", "joke", "lost", "fallow",  "feast","teach","tort","taught", "borrow", "steal", "trial", "grow", "lend", "kill", "jest", "fool", "fall", "quarrel", "quibble", "quest", "range", "rub", "barter", "bruise", "cut", "slice", "chop", "fire", "quarry", "jibe", "goss", "jill","dance","sing","play","work","tease","trip","tell", "taste", "sip", "try", "cross", "kill", "fill", "sit", "war", "pick", "duel", "force", "bully", "belt", "mash", "squash", "crush", "grind", "powder", "puff", "rule", "order", "tax", "writ", "write", "pine", "quiz", "quell", "loath", "touch", "shoot", "loose", "lob", "punt", "yeet", "drill", "dig", "point", "learn", "felch", "reach", "rhyme", "babble", "gabble", "gibber", "serve", "beg", "bore", "weep", "grieve", "stitch", "sew", "groove", "shape", "bicker", "crave", "rust", "clean", "curve", "trump", "cheat", "swindle", "furnish", "grovel", "simper", "sell", "scriven", "forge", "fire", "hammer", "grasp", "mill", "sack", "soak", "rest","stream","zeal","yeal","wheel","stoney","throat","haugh","plough","sow","sew","wed","wake","sleep","snore","rape","slap","punch","swing","break","throw","holler","hop","jump","skip","leap","plant","pace","joke","rib","brew","prove","point","turn","tut","tisk","cluck","natter","gossip","gift","gurn","gripe","ache","hand","grasp","grab","trudge","weave","kill","mend","tidy","riding",
 
 //Numbers (x)
-"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","once","twice","thrice","first","second","third","fourth","fifth","first","last","many","few","much", "less", "more", "most", "least"
+"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","once","twice","thrice","first","second","third","fourth","fifth","first","last","many","few","much", "less", "more", "most", "least",
 
 //Characters (x)
-"knave", "squire", "knight", "lord","beggar", "butcher", "baker", "don", "monger", "king", "queen", "duke", "earl", "fiddler", "fletcher", "judge", "tinker", "gipsy", "gypsy", "pilgrim", "villain", "burgher", "jury", "prince", "slave", "juror", "hunter", "beater", "keeper", "guide", "maid", "fool", "farmer", "sailor", "soldier", "thief", "lord", "man", "wife", "husband", "cryer", "lighter", "toll", "seller", "gaoler", "jail", "pauper", "doctor", "knocker", "crofter", "free", "chum", "wright", "chap", "whelp","waif","sire","heir", "jester", "groom"," bride", "maiden", "girl", "boy", "killer", "raper", "reaver", "pirate", "lawyer", "baron", "fisher", "worker", "lover",
+"knave", "squire", "knight", "lord","beggar", "butcher", "baker", "don", "monger", "king", "queen", "duke", "earl", "fiddler", "fletcher", "judge", "tinker", "gipsy", "gypsy", "pilgrim", "villain", "burgher", "jury", "prince", "slave", "juror", "hunter", "beater", "keeper", "guide", "maid", "fool", "farmer", "sailor", "soldier", "thief", "lord", "man", "wife", "husband", "cryer", "lighter", "toll", "seller", "gaoler", "jail", "pauper", "doctor", "knocker", "crofter", "free", "chum", "wright", "chap", "whelp","waif","sire","heir", "jester", "groom"," bride", "maiden", "girl", "boy", "killer", "raper", "reaver", "pirate", "lawyer", "baron", "fisher", "worker", "lover", "rogue", "blaggard",
 
 //Ecclesiastical (x)
 "sister", "abbot", "canon", "charter", "child", "temple", "friar", "abbey", "altar", "brother", "church", "cross", "apse", "nave", "altar", "shrine", "monk", "holy", "christ", "chris", "angel", "devil", "god", "alms", "lease", "fiddle", "saint", "pit", "aisle", "thorn", "pray", "grave", "prayer", "kneel", "bishop", "priest", "rector", "deacon", "sexton", "novice", "vicar", "verger", "bell", "spire",
@@ -221,47 +211,45 @@ var grammar = tracery.createGrammar({
 //Abstract Nouns (x)
 "love","all","pride","hope","grace","envy","lust","anger","rage","wrath","faith","pine","keen","regret","ever","harm", "health", "hale", "wish", "will", "worry", "fear", "peace", "calm", "grief", "sorrow", "pain", "hurt", "loss", "sin", "pity", "joy", "thrill", "hate", "wroth", "hurt", "pain", "glut", "greed", "growl", "brave", "brute", "calm",  "evil", "good", "fear", "loyal", "weak", "wit", "wise", "trust", "past", "stress", "free", "sad", "fail", "child",
 
-//Items & Tools
-"plane","lace","mill","axe","hoop","stick","brush","pan","rake","riddle","chisel","charm","tang", "grain", "thresh", "scythe", "winnow","bow", "bell", "boat", "coach", "knife", "cudge", "rattle", "spade", "silk", "sword", "gun", "cannon", "net", "staff", "stick", "drum", "rein", "bridle", "griddle", "glass", "cotton", "cloth", "twill", "seat", "chair", "hearth", "poker", "lamp", "pot", "bench", "book", "frame", "wax", "candle", "taper", "oil", "grist", "gravel", "yield", "shield", "pack", "lawn", "knap","whisk", "cart", "wagon", "bindle", "creel", "bobbin", "shuttle", "trowel", "loom", "rule", "dagger", "tray", "fork", "spoon", "whisk", "book", "glass", "hook", "maul", "mattock", "spear", "cane", "whip", "switch", "van", "dupe", "oar", "paddle", "light", "wicker", "coal", "door", "shoe", "scoop", "mat", "step", "axe", "harp", "pipe", "lute", ""
+//Items & Tools (x)
+"plane","lace","mill","axe","hoop","stick","brush","pan","rake","riddle","chisel","charm","tang", "grain", "thresh", "scythe", "winnow","bow", "bell", "boat", "coach", "knife", "cudge", "rattle", "spade", "silk", "sword", "gun", "cannon", "net", "staff", "stick", "drum", "rein", "bridle", "griddle", "glass", "cotton", "cloth", "twill", "seat", "chair", "hearth", "poker", "lamp", "pot", "bench", "book", "frame", "wax", "candle", "taper", "oil", "grist", "gravel", "yield", "shield", "pack", "lawn", "knap","whisk", "cart", "wagon", "bindle", "creel", "bobbin", "shuttle", "trowel", "loom", "rule", "dagger", "tray", "fork", "spoon", "whisk", "book", "glass", "hook", "maul", "mattock", "spear", "cane", "whip", "switch", "van", "dupe", "oar", "paddle", "light", "wicker", "coal", "door", "shoe", "scoop", "mat", "step", "axe", "harp", "pipe", "lute", "mace", "crook", "byre", "cosh", "shelf", "loft", "yard", "fetch", "coin", "purse", "belt", "brace", "hook", "board", "saw", "sickle", "slide", "scale", "weight", "rein", "rug", "bed", "chest", "coffer", "thread", "needle", "crock", "doil", "trench", "ewer", "jug", "soap", "lye", "brush", "rod", "net", "fly", "drink", "meal", "lunch", "supper", "tea",
 
-//Building
-"court", "mill", "church","tower","barn","gran","bridge", "span", "cellar", "orchard", "bar", "hall", "manor", "cloister", "bath", "wall", "gate", "lock", "fence", "ferry", "inn", "croft", "cott","moat", "farm", "hospital", "spital", "castle", "keep", "yard", "paddock", "stable", "pen", "fold", "home", "house",
+//Building (x)
+"court", "mill", "church","tower","barn","gran","bridge", "span", "cellar", "orchard", "bar", "hall", "manor", "cloister", "bath", "wall", "gate", "lock", "fence", "ferry", "inn", "croft", "cott","moat", "farm", "hospital", "spital", "castle", "keep", "yard", "paddock", "stable", "pen", "fold", "home", "house", "fort", "well", "school", "shop", "stead", "lodge", "garret", "hut", "shed", "drove", "shelter", "mine", "colliery", "inn",
 
-//Natural Features
-"river","hill","beck","burn","rill","brook","mount","heather","elm","beech","oak","ash","thorn","sun","moon","star","rime","bloom","broom","flower","gorse","rock","stone","scree","iron","holly","ivy","vine","birch","box","hop", "spring", "field", "wool", "willow", "hazel", "spring", "meadow","wind", "breeze","tree","light","edge","scree", "fern", "fish", "flax", "bone", "wool", "bank", "branch", "root", "leaf", "twig", "corn", "crown", "bog", "common", "grove", "graze", "knoll", "moss", "dirt", "soil", "mud", "sea", "shore", "beach", "down", "frost", "leave", "pool","weather", "cliff",
+//Natural Features (x)
+"river","hill","beck","burn","rill","brook","mount","heather","elm","beech","oak","ash","thorn","sun","moon","star","rime","bloom","broom","flower","gorse","rock","stone","scree","iron","holly","ivy","vine","birch","box","hop", "spring", "field", "wool", "willow", "hazel", "spring", "meadow","wind", "breeze","tree","light","edge","scree", "fern", "fish", "flax", "bone", "wool", "bank", "branch", "root", "leaf", "twig", "corn", "crown", "bog", "common", "grove", "graze", "knoll", "moss", "dirt", "soil", "mud", "sea", "shore", "beach", "down", "frost", "leave", "pool","weather", "cliff", "bee", "cave", "copse", "grove", "forest", "shore", "beach", "path", "marsh", "cove",
 
-//Dimensions
-"long","short","far","near","tall","short","shallow","deep","thin","fat","round","broad","wide","top","bottom",
+//Dimensions (x)
+"long","short","far","near","tall","short","shallow","deep","thin","fat","round","broad","wide","top","bottom","big", "little", "narrow", "small", "wee", "great",
 
 //Directions (x)
 "north", "south", "east", "west","up", "down", "left", "right", "in", "out", "under", "over", "round", "top", "bottom", "turn", "straight", "tween", "twixt", "through", "yond", "yonder", "after", "fore", "aft",
 
-//Supernatural
-"hob","pock","angel","imp", "ghoul", "ghast", "skull", "ghost", "hang", "noose", "knell", "witch", "warg", "hag", "hound", "spell", "curse", "charm",
+//Supernatural (x)
+"hob","pock","angel","imp", "ghoul", "ghast", "skull", "ghost", "hang", "noose", "knell", "witch", "warg", "hag", "hound", "spell", "curse", "charm", "pixie",
 
-//Old Names
-"algar", "alston", "archer", "ashton", "carl", "edd", "horsa", "eric", "ribert", "wini", "wilfred", "wuther", "wutha",
+//Old Names (x)
+"algar", "alston", "archer", "ashton", "carl", "edd", "horsa", "eric", "ribert", "wini", "wilfred", "wuther", "wutha", "brad", "bran", "chad", "brit", "brigg", "brax", "beck", "ains", "clay", "clint", "colt", "coop", "elf", "grant", "harl", "hark", "howl", "kenn", "lane", "marl", "rod", "roy", "saw", "sterl", "tuck", "van", "wes",
 
-//New Names
-"george", "henry", "john", "james", "mary",
+//New Names (x)
+"george", "henry", "john", "james", "mary", "robert", "alfred", "ed", "alf", "edgar", "harold", "will", "hen", "richard", "rich", "rob", "phil", "jame", "charles", "mary", "anne",
 
-//Biblical
-"",
+//Rude Words (x)
+"slag", "wank", "tit", "shit", "piss", "fuck", "bollock", "ball", "scrot",
 
-//Rude Words
-"slag", "wank", "tit", "shit", "piss", "fuck",
 
-//Adjectives (Other)
-"bleak","blind","burnt","hungry","cold",
+//Adjectives (Other) (x)
+"bleak","blind","burnt","hungry","cold","lone","busy","brief","out","in","aching",
 
-//Clothing
+//Clothing (x)
 "shoe", "hood", "cloak", "stock", "stocking", "hose", "trouser", "shirt", "blouse", "lace", "button", "wimple", "robe", "boot",
 
-//Animals
+//Animals (x)
 "fox","hare","coney","bat","roe","boar","bear","wolf","palfrey","steed","charger","deer","bee","fly","cod","herring","ling","mouse","beetle","hornet","wasp","gull","whelp","pup","dog","hound","crake","owl","otter", "goose", "char", "cod", "ling", "hake", "macker", "badger", "fly", "flea", "bug", "eagle", "heron", "lion", "cur", "pip",
-//fauna britannica (around empire)
 
-//Colours
+
+//Colours (x)
 "red", "brown", "green","yellow", "dun", "dark", "light", "blue", "gold", "silver", "rud", "burnt" ,"white", "russet", "taupe", "black", "tan", "tinge", "shade", "pink", "grey", "brown","yellow", "teal", "russet", "fawn", "taupe", "navy", "beige", "bisque", "blond","umber", "mauve"
 ]
 
@@ -422,6 +410,30 @@ wordconstructor.length = 0;
 currentWord = "";
 chosenending = "";
 
+//If we are onto the second word, make it either two clauses or a name ending
+if (i > 0) {
+var choice = Math.random();
+
+if (choice < 0.5) {
+wordconstructor.push(nameendingpool[randomChoiceFromArray(nameendingpool)]);
+} else {
+wordconstructor.push(notnameendingpool[randomChoiceFromArray(notnameendingpool)]);
+wordconstructor.push(nameendingpool[randomChoiceFromArray(nameendingpool)]);
+}
+} else {
+
+//3 clause names should be 1 nne, 2 ne. (ing as one)
+if (clausenumber > 2) {
+wordconstructor.push(notnameendingpool[randomChoiceFromArray(notnameendingpool)]);
+var randomChoice = randomChoiceFromArray(nameendingpool);
+wordconstructor.push(nameendingpool[randomChoice]);
+var randomChoice2 = randomChoiceFromArray(nameendingpool);
+while (randomChoice == randomChoice2) {
+randomChoice2 = randomChoiceFromArray(nameendingpool);
+}
+wordconstructor.push(nameendingpool[randomChoice2]);
+
+} else {
 // Add the correct number of notnameendings to the wordconstructor array.
 //(Added an exception for one-clause words)
 if (clausenumber < 2) {
@@ -433,7 +445,6 @@ wordconstructor.push(notnameendingpool[randomChoiceFromArray(notnameendingpool
 }
 }
 
-
 //Choose a nameending (if more than a single clause), and compare to see if a repetition between notnameending and nameending.
 if (clausenumber > 1) {
 while (chosenending == "" || wordconstructor.indexOf(chosenending) > -1) {
@@ -442,6 +453,9 @@ chosenending = nameendingpool[randomChoiceFromArray(nameendingpool)];
 //If the chosenending is not already in the array, there's no repetition: add it to the array and move on.
 wordconstructor.push(chosenending);
 }
+}
+}
+
 //When the word is successfully constructed, turn it into a string and add it to the finalwordConstructor array. Put a space in if there will be more than one word.
 currentWord = wordconstructor.join("");
 finalwordConstructor.push(currentWord);
