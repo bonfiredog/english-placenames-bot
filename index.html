@@ -10,47 +10,97 @@
 <script src="placesgrammar.js"></script>
 <title>The English Places</title>
 <link rel="stylesheet" type="text/css" href="style.css">
-
-<script>
-var $form = $('form#tplacenameform'),
-    url = 'https://script.google.com/macros/s/AKfycbzgyCpnq8kedAYg4umlUfh9xjL1lLquyQKCjbJDLnRP9yLwblMN/exec'
-
-$('#submit-form').on('click', function(e) {
-  e.preventDefault();
-  var jqxhr = $.ajax({
-    url: url,
-    method: "GET",
-    dataType: "json",
-    data: $form.serializeObject()
-  }).success(
-    console.log("Successfully submitted name and etymology to form.")
-  );
-})
-</script>
-
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
 </head>
-<body>
 
-<main>
-<div id="instructions">
-Here are some instructions.
+<body>
+<div id="mapspace">
+
+
+
+<div id="legendspace">
+<div id="legendtitle">
+<div id="logo">
+<img src="legend/oslogo.png" id="oslogo" />
+<span><strong>Ornamental<br/>Survey<sup>&reg;</sup></strong></span>
+</div>
+<div id="mapnumber">Emergent Series 151</div>
+<div id="maptitle"><strong>Nighthead</strong></div>
+<div id="mapscale">1:25 000 scale</div>
+</div>
+<div id="legendinfo">
+<div id="legendbox">
+<h1>Customer Information</h1>
+<span class="legendentry" style="font-size:0.8rem;">Edition - A</span>
+<span class="legendentry" style="font-size:0.8rem;">Revised 2020</span>
+<span class="legendentry" style="font-size:0.8rem;">&copy; Copyright <span id="year">1999</a></span></span>
+
+<div id="refreshbutton"><span>&#8635;</span> Get New Map</div>
 </div>
 
-<form id="placenameform">
-<input id="placestext" type="text" name="place_name" />
-<input type="text" name="place_etymology"/>
+<div id="legendbox">
+<h1>General Information</h1>
+<span class="legendentry" style="font-size:0.9rem;">Some general information about the map and what it does/how it works. Find the ones that are fake. More information, how they were generated.</span>
+</div>
 
-<button type="submit"id="submit-form">Submit</button>
+<div id="legendbox">
+<h1>Communications</h1>
+<span class="legendlink" ><mapicon><img src="legend/icon.png" /></mapicon><a href="http://robsherman.co.uk">Rob's Website</a></span>
+<span class="legendlink" ><a href="http://bonfiredog.co.uk"><mapicon><img src="legend/icon 2.png" /></mapicon>Bonfire Dog Website</a></span>
+<span class="legendlink"><mapicon><img src="legend/icon 3.png" /></mapicon><a href="https://github.com/bonfiredog/english-placenames-bot">Github Repo</a></span>
+<span class="legendlink"><mapicon><img src="legend/icon 4.png" /></mapicon><a href="mailto:rob@bonfiredog.co.uk">Email</a></span>
+<span class="legendlink"><mapicon><img src="legend/icon 5.png" /></mapicon><a href="https://tracery.io/">Tracery Website</a></span>
+</div>
 
+<div id="legendbox">
+<h1>Leisure Information</h1>
+<span class="legendlink" ><mapicon></mapicon>1</span>
+<span class="legendlink" ><mapicon></mapicon>1</span>
+<span class="legendlink" ><mapicon></mapicon>1</span>
+<span class="legendlink" ><mapicon></mapicon>1</span>
+<span class="legendlink" ><mapicon></mapicon>1</span>
+</div>
+</div>
+</div>
+
+<div id="mainmapholder">
+
+
+<div id="mapholder"><img id="mainmap" src="maps/map-test.png" /></div>
+
+<div class="placename small" style="top:76%;left:26%;"><strong>Stinking Farm</strong></div>
+
+<div class="placename small" style="top:13%;left:77%;"><strong>Bumhole Wood</strong></div>
+<div class="placenamepopup" style="top:14%;left:60%;display:none;">
+<form name="submit-to-google-sheet">
+<input name="placename" id="placenamerepo" placeholder="Bumhole Wood" readonly>
+<em>Where do you think the name comes from?</em>
+<input name="placenameetymology" id="etym" placeholder="Put your etymology here...">
+<div id="interact">
+  <button type="submit" id="submitbutton">&#10132;Send</button>
+</div>
 </form>
+</div>
 
 
-<div id="again" class="button">Again</div>
-<div id="no" class="button">This Feels Wrong In My Bones!</div>
-</main>
+<div class="placename large" style="top:59%;left:10%;"><strong>Nighthead</strong></div>
+</div>
 
-<div id="gradient"></div>
-<img src="map.png" id="map" />
 
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxhuHk9uyjBLLtMh2e6MAjN0lmn552XMHjsAk_3QhB9o7_0Uis/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+<div id="apologia">Please don't sue me.</div>
+<div id="arrows">&#10545;</div>
 </body>
 </html>

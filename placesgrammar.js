@@ -1,10 +1,6 @@
-//ISSUES
-//Mutations more often take place in longer (3 clause) words. Less often in one clause words.
-//Repeating elements across two words? Less often please!
-//Fix Google Sheet
-
 var nameendingpool = [];
 var notnameendingpool = [];
+var currentmutpos = 0;
 var clausepoolsize = 30;
 var tempclauseholder;
 var grammar;
@@ -32,8 +28,40 @@ var finaloneword2;
 var placenamefinal;
 var variantArray;
 
-
 $(document).ready(function() {
+
+// Reload page if needed.
+
+$('#refreshbutton').click(function(){
+window.location.reload();
+});
+
+//Display resize function.
+var pageHeight = $('html').height();
+var pageWidth = $('body').width();
+var portHeight = $(window).height();
+var portWidth = $(window).width();
+console.log(pageHeight + ", " + pageWidth);
+console.log(portHeight + ", " + portWidth);
+
+if (portHeight < pageHeight
+|| portWidth < pageWidth)
+{
+$('#arrows').css(
+"display", "block"
+);
+}
+
+$('#refreshbutton').hover(function(){
+$('#refreshbutton span').css({
+"transform": "rotate(180deg)"});
+}, function() {
+$('#refreshbutton span').css({
+"transform": "rotate(0deg)"});
+});
+
+//Get the current year
+  $("#year").text( (new Date).getFullYear());
 
 console.log("//---------------------------- NAME ELEMENTS");
 
@@ -51,7 +79,9 @@ tempclauseholder = "";
 }
 
 for (k=0; k < clausepoolsize; k++) {
+  console.log("Name Ending");
   console.log(nameendingpool[k]);
+  console.log("Not Name Ending");
   console.log(notnameendingpool[k]);
 }
 
@@ -61,9 +91,11 @@ console.log("//---------------------------- OPTIONAL MUTATIONS")
 
 //Cycle through each of the possible names, applying mutations to them.
 for (o = 0; o < notnameendingpool.length; o++) {
-  optionalMutations(notnameendingpool[o], o);
-}
+  console.log("Attempt to mutate " + notnameendingpool[o].toString());
+  notnameendingpool[o] = optionalMutations(notnameendingpool[o]);
+  console.log("After mutations: " + notnameendingpool[o].toString());
 
+}
 
 console.log("//---------------------------- NAME POOL GENERATION");
 
@@ -81,6 +113,7 @@ oneword = generateName(1,1);
 oneword = generateName(2,1);
 } else {
 oneword = generateName(3,1);
+oneword = optionalMutations(oneword);
 }
 
 //Repeat to retrieve a second word.
@@ -91,12 +124,14 @@ oneword2 = generateName(1,1);
 oneword2 = generateName(2,1);
 } else {
 oneword2 = generateName(3,1);
+oneword2 = optionalMutations(oneword2);
 }
 
 //Generate two words.
 
 if (percentageChance(50)) {
 twowords  = generateName(2,2);
+twowords = optionalMutations(twowords);
 } else {
 twowords  = generateName(1,2);
 }
@@ -120,7 +155,6 @@ console.log("//---------------------------- CONSTRUCTING FINAL NAME")
 //Pick a final name, either: one word, two words, small word, one of the 'variants', or Nighthead.
 
 var chance = Math.floor(Math.random() * 13) + 1;
-
 
 switch (chance) {
 case 1:
@@ -161,7 +195,8 @@ break;
 
 //Put the name into the DOM.
 console.log("Final name is " + placenamefinal + ".");
-$('#placestext').text(placenamefinal);
+
+document.getElementById('placenamerepo').value = placenamefinal;
 });
 
 //=========================================================
@@ -494,47 +529,13 @@ return rand;
 
 //------------------------------------------------------
 
-function optionalMutations(entry, position) {
+function optionalMutations(entry) {
 
 vowels = ["a", "e", "i", "o", "u"];
 consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
 namearray = entry.split("");
+console.log(namearray);
 
-
-
-//---------------------------------------
-
-//Chance to remove doubled letters.
-
-var previousLetter = "";
-
-if (percentageChance(20)) {
-for (i=0; i < namearray.length; i++) {
-previousLetter = namearray[i - 1];
-if (previousLetter == namearray[i]) {
-console.log("(" + entry + "): " + "Removed doubled letters: " + namearray[i] + ".");
-namearray.splice(i,1);
-}
-}
-
-}
-
-//---------------------------------------
-
-//Removing any triplicate letters.
-
-var twolettersago = "";
-var previousLetter = "";
-
-for (i=0; i< namearray.length; i++) {
-twolettersago = namearray[i - 2];
-previousLetter = namearray[i - 1];
-
-if (previousLetter == namearray[i] && twolettersago == namearray[i]) {
-console.log("(" + entry + "): " + "Removed triplicate letters: " + namearray[i] + ".");
-namearray.splice(i,1);
-}
-}
 
 //--------------------------------------
 
@@ -603,14 +604,13 @@ console.log("(" + entry + "): " + "Lenition/Fortition: Swapped " + swapsinname[c
 }
 
 //------------------------------------------
-/*
+
 //Chance for an addition of a vowel or consonant. (Epenthesis)
 
 if (percentageChance(20)) {
 
 var vowelorcon = ["v","c"];
 var epenchoice = vowelorcon[randomChoiceFromArray(vowelorcon)];
-
 
 // ADDING A VOWEL
 if (epenchoice == "v") {
@@ -621,7 +621,7 @@ console.log("Epenthesis: adding a vowel.")
 voweltocheck = "";
 
 //Choose a vowel, and find it in the name. If it isn't there, choose another.
-while (namearray.includes(voweltocheck) != true) {
+while (namearray.includes(voweltocheck) != true && namearray.length > 0) {
 var voweltocheck = vowels[randomChoiceFromArray(vowels)];
 }
 
@@ -653,54 +653,46 @@ console.log("(" + entry + "): " + "Doubled " + consonanttocheck + ".");
 }
 }
 
-/*
-//Chance to remove a vowel or consonant. (Elision)
+//---------------------------------------
+
+//Chance to remove doubled letters.
+
+var previousLetter = "";
 
 if (percentageChance(20)) {
-
-var vowelorcon = ["v","c"];
-var elchoice = vowelorcon[randomChoiceFromArray(vowelorcon)];
-
-if (elchoice == "v") {
-
-console.log("Elision: removing a vowel.");
-
-//Reset the vowel.
-voweltocheck = "";
-//Choose a vowel, and find it in the name. If it isn't there, choose another.
-
-while (namearray.includes(voweltocheck) != true && namearray.length > 0) {
-voweltocheck = vowels[randomChoiceFromArray(vowels)];
-}
-
-//Replace the chosen entry with an empty string.
-var vowelpos3 = namearray.indexOf(voweltocheck);
-namearray[vowelpos3] = "";
-console.log("(" + entry + "): " + "Removed " + voweltocheck + ".");
-
-} else if (elchoice == "c") {
-
-  console.log("Elision: removing a vowel.");
-
-//Reset the consonant.
-consonanttocheck = "";
-//Choose a consonant, and find it in the name. If it isn't there, choose another.
-while (namearray.includes(consonanttocheck) != true && namearray.length > 0) {
-consonanttocheck = consonants[randomChoiceFromArray(consonants)];
-}
-
-//Replace the chosen entry with an empty string.
-var conpos3 = namearray.indexOf(consonanttocheck);
-namearray[conpos3] = "";
-console.log("(" + entry + "): " + "Removed " + consonanttocheck + ".");
+for (i=0; i < namearray.length; i++) {
+previousLetter = namearray[i - 1];
+if (previousLetter == namearray[i]) {
+console.log("(" + entry + "): " + "Removed doubled letters: " + namearray[i] + ".");
+namearray.splice(i,1);
 }
 }
 
-*/
+}
+
+//---------------------------------------
+
+//Removing any triplicate letters.
+
+var twolettersago = "";
+var previousLetter = "";
+
+for (i=0; i< namearray.length; i++) {
+twolettersago = namearray[i - 2];
+previousLetter = namearray[i - 1];
+
+if (previousLetter == namearray[i] && twolettersago == namearray[i]) {
+console.log("(" + entry + "): " + "Removed triplicate letters: " + namearray[i] + ".");
+namearray.splice(i,1);
+}
+}
+
+//--------------------------------------
+
 //Put the name array back into a string.
-var putbackentry = namearray.join("");
-placenamepool[position] = putbackentry;
 
+var putbackentry = namearray.join("");
+return putbackentry;
 }
 //--------------------------------------------------
 
