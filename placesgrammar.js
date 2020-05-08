@@ -6,10 +6,9 @@ var tempclauseholder;
 var grammar;
 //-----------------------------
 var placenamepool = [];
-var smallword = "";
-var oneword = "";
-var twowords = "";
-var oneword2 = "";
+var smallword = [];
+var oneword = [];
+var twowords = [];
 var finalwordConstructor = [];
 var wordconstructor = [];
 var currentWord = "";
@@ -25,45 +24,288 @@ var finalsmallword;
 var finaltwoword;
 var finaloneword;
 var finaloneword2;
-var placenamefinal;
+var placenamefinal1;
+var placenamefinal2;
+var placenamefinal3;
+var placenamefinal4;
 var variantArray;
+
+//-----------------------------
+var currentid;
+var popupid;
+var circleid;
+
+//-----------------------------
+
+var mapnumber;
+var mapurl;
+var nametoadd;
+
+var mapx1;
+var mapy1;
+var mappopx1;
+var mappopy1;
+
+var mapx2;
+var mapy2;
+var mappopx2;
+var mappopy2;
+
+var mapx3;
+var mapy3;
+var mappopx3;
+var mappopy3;
+
+var mapx4;
+var mapy4;
+var mappopx4;
+var mappopy4;
+
+//-----------------------------
+
+var timer1;
+
+
+//-----------------------------
+
+
+
 
 $(document).ready(function() {
 
-// Reload page if needed.
+// PAGE FUNCTIONS
+
+// Reload page when button clicked.
 
 $('#refreshbutton').click(function(){
+$(this).html("Reloading...");
 window.location.reload();
 });
 
-//Display resize function.
+$('#submitbutton').click(function(){
+$(this).html("Submitting...");
+timer1 = setTimeout(resetsubmit, 2000);
+});
+
+
+
+
+
+//Display resize icons if necessary.
+
 var pageHeight = $('html').height();
 var pageWidth = $('body').width();
 var portHeight = $(window).height();
 var portWidth = $(window).width();
-console.log(pageHeight + ", " + pageWidth);
-console.log(portHeight + ", " + portWidth);
 
 if (portHeight < pageHeight
 || portWidth < pageWidth)
 {
-$('#arrows').css(
-"display", "block"
+$('#arrow1').css(
+"opacity", "1"
+);
+$('#arrow2').css(
+"opacity", "1"
 );
 }
 
-$('#refreshbutton').hover(function(){
-$('#refreshbutton span').css({
-"transform": "rotate(180deg)"});
-}, function() {
-$('#refreshbutton span').css({
-"transform": "rotate(0deg)"});
+$(document).scroll(function(e){
+
+var scrolldownAmount = $(window).scrollTop();
+var documentHeight = $(document).height();
+var windowHeight = $(window).height();
+
+var scrolldownPercent = (scrolldownAmount / (documentHeight - windowHeight)) * 100;
+
+var scrollrightAmount = $(window).scrollLeft();
+var documentWidth = $(document).width();
+var windowWidth = $(window).width();
+
+var scrollrightPercent = (scrollrightAmount / (documentWidth - windowWidth)) * 100;
+
+if (scrolldownPercent >= 100) {
+$('#arrow2').css(
+"opacity", "0"
+);
+} else {
+var pageHeight = $('html').height();
+var portHeight = $(window).height();
+if (portHeight < pageHeight) {
+$('#arrow2').css(
+"opacity", "1"
+);
+}
+}
+
+if (scrollrightPercent >= 100) {
+$('#arrow1').css(
+"opacity", "0"
+);
+} else {
+var pageWidth = $('body').width();
+var portWidth = $(window).width();
+if (portWidth < pageWidth) {
+$('#arrow1').css(
+"opacity", "1"
+);
+}
+}
 });
 
-//Get the current year
+
+//Refresh Button Appearance
+
+$('#refreshbutton').hover(function(){
+$(this).css({
+"border-left": "5px double white",
+"border-bottom": "3px solid black",
+"border-right": "3px solid black"
+});
+
+$('#refreshbutton span').css({
+"transform": "rotate(180deg)"
+});
+
+}, function() {
+
+$(this).css({
+"border-left": "0px double white",
+"border-bottom": "0px solid black",
+"border-right": "0px solid black"
+});
+
+$('#refreshbutton span').css({
+"transform": "rotate(0deg)"
+});
+
+});
+
+
+//Get the current year and display
   $("#year").text( (new Date).getFullYear());
 
+
+//Load a random map and its variables.
+
+var mapnumber = getRandomArbitrary(1,1);
+console.log("mapnum = " + mapnumber);
+switch(mapnumber) {
+case 1:
+mapurl = "maps/map1.png";
+mapx1 = "77%";
+mapy1 = "14%";
+mappopx1 = "53%";
+mappopy1 = "17%";
+
+mapx2 = "39%";
+mapy2 = "80%";
+mappopx2 = "29%";
+mappopy2 = "47%";
+
+mapx3 = "75%";
+mapy3 = "91.3%";
+mappopx3 = "49%";
+mappopy3 = "63%";
+
+mapx4 = "11%";
+mapy4 = "59%";
+mappopx4 = "15%";
+mappopy4 = "61%";
+break;
+
+}
+
+$('#mainmap').attr("src", mapurl);
+
+$('#1').css({
+"left": mapx1,
+"top": mapy1
+});
+
+$('#2').css({
+"left": mapx2,
+"top": mapy2
+});
+
+$('#3').css({
+"left": mapx3,
+"top": mapy3
+});
+
+$('#4').css({
+"left": mapx4,
+"top": mapy4
+});
+
+
+//Open Popups
+$('.placename').click(function() {
+$('.placename').css(
+"border", "none"
+);
+$(this).css(
+"border", "3px double #00B9F2"
+);
+currentid = $(this).attr('id');
+console.log(currentid);
+switch(currentid){
+case "1":
+$('#pop').css({
+"left": mappopx1,
+"top": mappopy1
+});
+nametoadd = placenamefinal1;
+break;
+case "2":
+$('#pop').css({
+"left": mappopx2,
+"top": mappopy2
+});
+nametoadd = placenamefinal2;
+break;
+case "3":
+$('#pop').css({
+"left": mappopx3,
+"top": mappopy3
+});
+nametoadd = placenamefinal3;
+break;
+case "4":
+$('#pop').css({
+"left": mappopx4,
+"top": mappopy4
+});
+nametoadd = placenamefinal4;
+break;
+}
+
+$('#pop input').attr('value', nametoadd);
+
+$('#pop').css(
+"display", "block"
+);
+});
+
+
+
+$('.cancelbutton').click(function(){
+console.log("clicked");
+$('.placenamepopup').css(
+"display", "none"
+);
+$('.placename').css(
+"border", "none"
+);
+});
+
+
+
 console.log("//---------------------------- NAME ELEMENTS");
+
+placenamefinal1 = "";
+placenamefinal2 = "";
+placenamefinal3 = "";
+placenamefinal4 = "Nighthead";
 
 //Generate a pool of name endings and notnameendings, saved as two arrays.
 
@@ -89,7 +331,7 @@ console.log("All name element pools generated.");
 
 console.log("//---------------------------- OPTIONAL MUTATIONS")
 
-//Cycle through each of the possible names, applying mutations to them.
+//Cycle through each of the possible notnameendings, applying mutations to them.
 for (o = 0; o < notnameendingpool.length; o++) {
   console.log("Attempt to mutate " + notnameendingpool[o].toString());
   notnameendingpool[o] = optionalMutations(notnameendingpool[o]);
@@ -97,112 +339,93 @@ for (o = 0; o < notnameendingpool.length; o++) {
 
 }
 
+console.log("All mutations done on notnameendings")
+
 console.log("//---------------------------- NAME POOL GENERATION");
 
 // Take random name endings and notnameendings from the pools, and construct a pool of name types, making sure that elements are not repeated wholesale in names.
 
-//Generate a small word, of one clause.
+//Generate a set of small words, of one clause.
 
-smallword = generateName(1, 1);
-
-//Generate a word with one to three clauses.
-
-if (percentageChance(20)) {
-oneword = generateName(1,1);
-} else if (percentageChance(75)) {
-oneword = generateName(2,1);
-} else {
-oneword = generateName(3,1);
-oneword = optionalMutations(oneword);
+for (g = 0; g < 5; g++) {
+smallword[g] = generateName(1, 1).capitalize();
+console.log("Small name generated: " + smallword[g]);
 }
 
-//Repeat to retrieve a second word.
+console.log("Generated small names.")
 
+
+//Generate a set of words with one to three clauses (with a possible name variant).
+
+for (g = 0; g < 5; g++) {
 if (percentageChance(20)) {
-oneword2 = generateName(1,1);
-} else if (percentageChance(75)) {
-oneword2 = generateName(2,1);
+oneword[g] = generateName(1,1).capitalize();
+} else if (percentageChance(55)) {
+oneword[g] = generateName(2,1).capitalize();
 } else {
-oneword2 = generateName(3,1);
-oneword2 = optionalMutations(oneword2);
+oneword[g] = generateName(3,1).capitalize();
+oneword[g] = optionalMutations(oneword[g]);
 }
 
-//Generate two words.
+if (percentageChance(35)) {
+oneword[g] = nameVariants(oneword[g], oneword[g - 1], smallword[randomChoiceFromArray(smallword)]);
+}
+console.log("One-word name generated: " + oneword[g]);
+}
 
+console.log("Generated one-word names.")
+
+//Generate a set of two-word names.
+
+for (g = 0; g < 5; g++) {
 if (percentageChance(50)) {
-twowords  = generateName(2,2);
-twowords = optionalMutations(twowords);
+twowords[g]  = generateName(2,2).capitalize();
+twowords[g] = optionalMutations(twowords[g]);
 } else {
-twowords  = generateName(1,2);
+twowords[g]  = generateName(1,2).capitalize();
+}
+console.log("Two-word name generated: " + twowords[g]);
 }
 
-// Place finalised names into an array.
-placenamepool.push(smallword);
-placenamepool.push(oneword);
-placenamepool.push(oneword2);
-placenamepool.push(twowords);
+console.log("Generated two-word names.")
 
-finalsmallword = smallword.capitalize();
-finaloneword = oneword.capitalize();
-finaloneword2 = oneword2.capitalize();
-finaltwoword = twowords.capitalize();
+console.log("//---------------------------- CONSTRUCTING FINAL NAMES")
 
+placenamefinal1 = assignnameRandomly();
+placenamefinal2 = assignnameRandomly();
+placenamefinal3 = assignnameRandomly();
 
-console.log("Final name elements (with mutations): " + finalsmallword + ", " + finaloneword + ", " + finaloneword2 + ", " + finaltwoword + ", Nighthead.");
+console.log("Chosen placenames: " + placenamefinal1 + ", " + placenamefinal2 + ", " + placenamefinal3 + ".")
 
-console.log("//---------------------------- CONSTRUCTING FINAL NAME")
+//Add names to DOM.
+$('#1').html(placenamefinal1.capitalize());
+$('#2').html(placenamefinal2.capitalize());
+$('#3').html(placenamefinal3.capitalize());
+$('#4').html(placenamefinal4.capitalize());
 
-//Pick a final name, either: one word, two words, small word, one of the 'variants', or Nighthead.
-
-var chance = Math.floor(Math.random() * 13) + 1;
-
-switch (chance) {
-case 1:
-placenamefinal = finalsmallword;
-
-case 2:
-case 3:
-case 4:
-case 5:
-placenamefinal = finaloneword;
-break;
-
-case 6:
-case 7:
-placenamefinal = finaltwoword;
-break;
-
-case 8:
-placenamefinal = finalsmallword;
-break;
-
-case 9:
-case 10:
-case 11:
-case 12:
-placenamefinal = nameVariants()
-break;
-
-case 13:
-placenamefinal = "Nighthead";
-break;
-
-default:
-placenamefinal = "randomiser not working";
-break;
-}
-
-
-//Put the name into the DOM.
-console.log("Final name is " + placenamefinal + ".");
-
-document.getElementById('placenamerepo').value = placenamefinal;
 });
 
 //=========================================================
 
 
 // FUNCTIONS
+
+function assignnameRandomly() {
+var chance3 = Math.floor(Math.random() * 4) + 1;
+
+switch(chance3) {
+case 1:
+return smallword[randomChoiceFromArray(smallword)];
+break;
+case 2:
+case 3:
+return oneword[randomChoiceFromArray(oneword)];
+break;
+case 4:
+return twowords[randomChoiceFromArray(twowords)];
+break;
+}
+}
 
 function generatenotnameEnding() {
 
@@ -504,7 +727,9 @@ finalwordConstructor.push(" ");
 if (finalwordConstructor[finalwordConstructor.length - 1] == " ") {
 finalwordConstructor.splice(finalwordConstructor.length - 1,1);
 }
-return finalwordConstructor.join("");
+var wordcapitalholder = finalwordConstructor.join("");
+wordcapitalholder.capitalize();
+return wordcapitalholder;
 }
 
 //------------------------------------------------------
@@ -696,7 +921,7 @@ return putbackentry;
 }
 //--------------------------------------------------
 
-function nameVariants() {
+function nameVariants(name, name2, smallname) {
 
 var chance2 = Math.floor(Math.random() * 34) + 1;
 
@@ -705,7 +930,7 @@ switch (chance2) {
 case 1:
 console.log("Chosen a Latin name variant.");
 // LATIN
-var variantArray = [finaloneword + " Parva", finaloneword + "Magna", finaloneword + " Superior", finaloneword + " Regis", finaloneword + " Episcopi", finaloneword + " Abbas", finaloneword + " Abbey", finaloneword + "-cum-" + finaloneword2];
+var variantArray = [name + " Parva", name + " Magna", name + " Superior", name + " Regis", name + " Episcopi", name + " Abbas", name + " Abbey", name + "-cum-" + smallname];
 return variantArray[randomChoiceFromArray(variantArray)];
 break;
 
@@ -714,174 +939,168 @@ console.log("Chosen a holy name variant.");
 //HOLY
 var holyName = ["Mary","Matthew", "Mark", "Luke", "John", "Judas", "Joseph", "Cuthbert", "Bernice", "Sarah", "Rebecca", "Swithin"];
 var holyNameFinal = holyName[randomChoiceFromArray(holyName)];
-variantArray = ["St. " + holyNameFinal, finaloneword + " St. " + holyNameFinal, "Saint " + finaloneword, "Saint " + holyNameFinal];
+variantArray = ["St. " + holyNameFinal, name + " St. " + holyNameFinal, "Saint " + name, "Saint " + holyNameFinal];
 return variantArray[randomChoiceFromArray(variantArray)];
 break;
 
 case 3:
 //PORT
 console.log("Chosen a Port name variant.");
-return "Port " + finaloneword;
+return "Port " + name;
 break;
 
 case 4:
-console.log("Chosen a Royal name variant.");
-//ROYAL
-var royalNames = ["Royal " + finaloneword, "Royal " + finaloneword, "Royal " + finaltwoword];
-return royalNames[randomChoiceFromArray(royalNames)];
-break;
-
 case 5:
 console.log("Chosen a Size & Position name variant.");
 //SIZE & POSITION
-var sizeNames = ["Great " + finaloneword, "Little " + finaloneword, "Upper " + finaloneword, "Lower " + finaloneword, "Middle " + finaloneword, "Outer " + finaloneword, "Inner " + finaloneword];
+var sizeNames = ["Great " + name, "Little " + name, "Upper " + name, "Lower " + name, "Middle " + name, "Outer " + name, "Inner " + name];
 return sizeNames[randomChoiceFromArray(sizeNames)];
 break;
 
 case 6:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-under-" + finalsmallword;
+return name + "-under-" + smallname;
 break;
 
 case 7:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-over-" + finalsmallword;
+return name + "-over-" + smallname;
 break;
 
 case 8:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-beside-" + finalsmallword;
+return name + "-beside-" + smallname;
 break;
 
 case 9:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-upon-" + finalsmallword;
+return name + "-upon-" + smallname;
 break;
 
 case 10:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-on-the-" + finalsmallword;
+return name + "-on-the-" + smallname;
 break;
 
 case 11:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-by-the-" + finalsmallword;
+return name + "-by-the-" + smallname;
 break;
 
 case 12:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-in-the-" + finalsmallword;
+return name + "-in-the-" + smallname;
 break;
 
 case 13:
 console.log("Chosen a under/over name variant.");
-return finaloneword + "-across-the-" + finalsmallword;
+return name + "-across-the-" + smallname;
 break;
 
 case 14:
 console.log("Chosen a under/over name variant.");
-return finalsmallword + "ing " + finaloneword;
+return smallname + "ing " + name;
 break;
 
 case 15:
 console.log("Chosen a village name variant.");
-return finaloneword + " Village";
+return name + " Village";
 break;
 
 case 16:
 console.log("Chosen a town name variant.");
-return finaloneword + " Town";
+return name + " Town";
 break;
 
 case 17:
 console.log("Chosen a green name variant.");
-return finaloneword + " Green";
+return name + " Green";
 break;
 
 case 18:
 console.log("Chosen a station name variant.");
-return finaloneword + " Station";
+return name + " Station";
 break;
 
 case 19:
 console.log("Chosen a road name variant.");
-return finaloneword + " Road";
+return name + " Road";
 break;
 
 case 20:
 console.log("Chosen a castle name variant.");
-return finaloneword + " Castle";
+return name + " Castle";
 break;
 
 case 21:
 console.log("Chosen a castle name variant.");
-return "Castle " + finaloneword;
+return "Castle " + name;
 break;
 
 case 22:
 console.log("Chosen a hill name variant.");
-return finaloneword + " Hill";
+return name + " Hill";
 break;
 
 case 23:
 console.log("Chosen an island name variant.");
-return finaloneword + " Island";
+return name + " Island";
 break;
 
 case 24:
 console.log("Chosen a water name variant.");
-return finaloneword + " Water";
+return name + " Water";
 break;
 
 case 25:
 console.log("Chosen a heath name variant.");
-return finaloneword + " Heath";
+return name + " Heath";
 break;
 
 case 26:
 console.log("Chosen a valley name variant.");
-return finaloneword + " Valley";
+return name + " Valley";
 break;
 
 case 27:
 console.log("Chosen an end name variant.");
-return finaloneword + " End";
+return name + " End";
 break;
 
 case 28:
 console.log("Chosen an isle of name variant.");
-return "Isle Of " + finalsmallword;
+return "Isle Of " + smallname;
 break;
 
 case 29:
 console.log("Chosen an park name variant.");
-return finaloneword + " Park";
+return name + " Park";
 break;
 
 case 30:
 console.log("Chosen an nether name variant.");
-return "Nether " + finaloneword;
+return "Nether " + name;
 break;
 
 case 31:
 console.log("Chosen an pond name variant.");
-return finaloneword + " Pond";
+return name + " Pond";
 break;
 
 case 32:
 console.log("Chosen an corner name variant.");
-return finaloneword + " Corner";
+return name + " Corner";
 break;
 
 case 33:
 console.log("Chosen an house name variant.");
-return finaloneword + " House";
+return name + " House";
 break;
 
 case 34:
 console.log("Chosen a Direction name variant.");
 // LATIN
-var variantArray1 = [finaloneword, finaloneword2];
+var variantArray1 = [name];
 var variantArray2 = ["East", "West", "North", "South"];
 return variantArray1[randomChoiceFromArray(variantArray1)] + " " + variantArray2[randomChoiceFromArray(variantArray2)];
 break;
@@ -889,4 +1108,19 @@ break;
 default:
 break;
 }
+}
+
+//-------------------------------------
+
+function getRandomArbitrary(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+}
+function resetsubmit() {
+$('#etym').val("");
+$('#submitbutton').html("Submitted!");
+setTimeout(resetsubmit2, 2000);
+}
+
+function resetsubmit2(){
+$('#submitbutton').html("&#10132; Send");
 }

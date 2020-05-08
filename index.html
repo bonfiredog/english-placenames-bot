@@ -16,15 +16,13 @@
 <body>
 <div id="mapspace">
 
-
-
 <div id="legendspace">
 <div id="legendtitle">
 <div id="logo">
 <img src="legend/oslogo.png" id="oslogo" />
-<span><strong>Ornamental<br/>Survey<sup>&reg;</sup></strong></span>
+<span><strong>Oneiric<br/>Survey<sup>&reg;</sup></strong></span>
 </div>
-<div id="mapnumber">Emergent Series 151</div>
+<div id="mapnumber">Counterfactual Series 151</div>
 <div id="maptitle"><strong>Nighthead</strong></div>
 <div id="mapscale">1:25 000 scale</div>
 </div>
@@ -40,52 +38,118 @@
 
 <div id="legendbox">
 <h1>General Information</h1>
-<span class="legendentry" style="font-size:0.9rem;">Some general information about the map and what it does/how it works. Find the ones that are fake. More information, how they were generated.</span>
+<span class="legendentry" style="font-size:0.9rem;">
+<p>An English placename generator, built using <a href="http://tracery.io">Tracery</a>, <a href="https://jquery.com">jQuery</a> and a dilletante's grasp of toponymy by <a href="http://robsherman.co.uk">Rob Sherman</a>.</p>
+
+<p>Find the computationally-generated names, and click on them to write their etymology.</p>
 </div>
 
 <div id="legendbox">
 <h1>Communications</h1>
-<span class="legendlink" ><mapicon><img src="legend/icon.png" /></mapicon><a href="http://robsherman.co.uk">Rob's Website</a></span>
-<span class="legendlink" ><a href="http://bonfiredog.co.uk"><mapicon><img src="legend/icon 2.png" /></mapicon>Bonfire Dog Website</a></span>
-<span class="legendlink"><mapicon><img src="legend/icon 3.png" /></mapicon><a href="https://github.com/bonfiredog/english-placenames-bot">Github Repo</a></span>
-<span class="legendlink"><mapicon><img src="legend/icon 4.png" /></mapicon><a href="mailto:rob@bonfiredog.co.uk">Email</a></span>
-<span class="legendlink"><mapicon><img src="legend/icon 5.png" /></mapicon><a href="https://tracery.io/">Tracery Website</a></span>
+
+<span class="legendlink" >
+<img src="legend/icon.png" />
+<span class="linktext"><a href="http://robsherman.co.uk">Rob's Website</a></span>
+</span>
+
+<span class="legendlink" >
+<img src="legend/icon 2.png" />
+<span class="linktext"><a href="http://bonfiredog.co.uk">Bonfire Dog Website</a></span>
+</span>
+
+<span class="legendlink">
+<img src="legend/icon 3.png" />
+<span class="linktext">
+<a href="https://github.com/bonfiredog/english-placenames-bot">Github Repo</a></span>
+</span>
+
+<span class="legendlink">
+<img src="legend/icon 4.png" />
+<span class="linktext"><a href="mailto:rob@bonfiredog.co.uk">Email</a></span>
+</span>
+
+<span class="legendlink">
+<img src="legend/icon 5.png" />
+<span class="linktext"><a href="https://tracery.io/">Tracery Website</a></span>
+</span>
 </div>
 
 <div id="legendbox">
 <h1>Leisure Information</h1>
-<span class="legendlink" ><mapicon></mapicon>1</span>
-<span class="legendlink" ><mapicon></mapicon>1</span>
-<span class="legendlink" ><mapicon></mapicon>1</span>
-<span class="legendlink" ><mapicon></mapicon>1</span>
-<span class="legendlink" ><mapicon></mapicon>1</span>
+
+<span class="legendlink" >
+<img src="#" />
+<span class="linktext">1</span>
+</span>
+
+<span class="legendlink" >
+<img src="#" />
+<span class="linktext">1</span>
+</span>
+
+<span class="legendlink" >
+<img src="#" />
+<span class="linktext">1</span>
+</span>
+
+<span class="legendlink" >
+<img src="#" />
+<span class="linktext">1</span>
+</span>
+
+<span class="legendlink" >
+<img src="#" />
+<span class="linktext">1</span>
+</span>
+
 </div>
 </div>
 </div>
 
 <div id="mainmapholder">
 
+<div id="mapholder"><img id="mainmap" src="" /></div>
 
-<div id="mapholder"><img id="mainmap" src="maps/map-test.png" /></div>
+<!-- PLACENAMES -->
 
-<div class="placename small" style="top:76%;left:26%;"><strong>Stinking Farm</strong></div>
+<div class="placename small" id="1"></div>
 
-<div class="placename small" style="top:13%;left:77%;"><strong>Bumhole Wood</strong></div>
-<div class="placenamepopup" style="top:14%;left:60%;display:none;">
+<!-- ################# -->
+
+<div class="placename small" id="2"></div>
+
+<!-- ################# -->
+
+<div class="placename large" id="3">
+</div>
+
+<!-- ################# -->
+
+<div class="placename large" id="4">
+</div>
+
+<!-- Response Form -->
+
+<div class="placenamepopup" id="pop">
+<div class="cancelbutton">X</div>
 <form name="submit-to-google-sheet">
-<input name="placename" id="placenamerepo" placeholder="Bumhole Wood" readonly>
-<em>Where do you think the name comes from?</em>
-<input name="placenameetymology" id="etym" placeholder="Put your etymology here...">
+<input name="placename" id="placenamerepo" placeholder="" readonly>
+<p>
+Well done! You found one of the fake names!
+</p>
+<p>If you like, you can write something below about this place. What is it famous for? Has anything interesting happened there? How did it get its name?
+</p>
+<textarea name="placenameetymology" id="etym" placeholder="Put your response here..."></textarea>
 <div id="interact">
-  <button type="submit" id="submitbutton">&#10132;Send</button>
+  <button type="submit" id="submitbutton">&#10132; Send</button>
 </div>
 </form>
 </div>
 
 
-<div class="placename large" style="top:59%;left:10%;"><strong>Nighthead</strong></div>
-</div>
+<!-- ################# -->
 
+</div>
 
 
 <script>
@@ -100,7 +164,8 @@
   })
 </script>
 
-<div id="apologia">Please don't sue me.</div>
-<div id="arrows">&#10545;</div>
+<div id="apologia">Map images and logo all &copy; Crown Copyright. Please don't sue me.</div>
+<div id="arrow1">&#8594;</div>
+<div id="arrow2">&#8595;</div>
 </body>
 </html>

@@ -1,0 +1,16 @@
+Tweaks
+======
+
+only certain consonants get doubled: b, d, f, g, l, m, n, p, r, s, t
+Make 'add y' less common.
+Consonants are not doubled at the start of a word or one letter in.
+swap vowels at end = nono? Or for any other.
+Second run through not helping...
+Not deleting three lots of letters (add new letters as array element, not in one array element.
+take chances to mutate down generally.
+epenthesis still getting stuck.
+Different OS image each time (random of 20)
+Line goes to it each time - make it 
+or add them onto a map at random?
+find the fake names - click on them to bring them up.
+Magna needs a space.
