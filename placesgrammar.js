@@ -1,7 +1,7 @@
 var nameendingpool = [];
 var notnameendingpool = [];
 var currentmutpos = 0;
-var clausepoolsize = 30;
+var clausepoolsize = 50;
 var tempclauseholder;
 var grammar;
 //-----------------------------
@@ -98,8 +98,8 @@ var pageWidth = $('body').width();
 var portHeight = $(window).height();
 var portWidth = $(window).width();
 
-if (portHeight < pageHeight
-|| portWidth < pageWidth)
+if (portHeight < pageHeight - 5
+|| portWidth < pageWidth - 5)
 {
 $('#arrow1').css(
 "opacity", "1"
@@ -123,7 +123,7 @@ var windowWidth = $(window).width();
 
 var scrollrightPercent = (scrollrightAmount / (documentWidth - windowWidth)) * 100;
 
-if (scrolldownPercent >= 100) {
+if (scrolldownPercent >= 95) {
 $('#arrow2').css(
 "opacity", "0"
 );
@@ -137,7 +137,7 @@ $('#arrow2').css(
 }
 }
 
-if (scrollrightPercent >= 100) {
+if (scrollrightPercent >= 95) {
 $('#arrow1').css(
 "opacity", "0"
 );
@@ -192,25 +192,33 @@ console.log("mapnum = " + mapnumber);
 switch(mapnumber) {
 case 1:
 mapurl = "maps/map1.png";
-mapx1 = "77%";
-mapy1 = "14%";
+mapx1 = "65.3%";
+mapy1 = "17%";
 mappopx1 = "53%";
-mappopy1 = "17%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
 
-mapx2 = "39%";
-mapy2 = "80%";
+mapx2 = "27.5%";
+mapy2 = "89.5%";
 mappopx2 = "29%";
-mappopy2 = "47%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
 
-mapx3 = "75%";
-mapy3 = "91.3%";
-mappopx3 = "49%";
-mappopy3 = "63%";
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
 
-mapx4 = "11%";
+mapx4 = "-0.5%";
 mapy4 = "59%";
-mappopx4 = "15%";
-mappopy4 = "61%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
 break;
 
 }
@@ -239,14 +247,16 @@ $('#4').css({
 
 
 //Open Popups
-$('.placename').click(function() {
-$('.placename').css(
+$('.placename span').click(function() {
+var parentplacename = $(this).parent();
+
+$('.placename span').css(
 "border", "none"
 );
 $(this).css(
 "border", "3px double #00B9F2"
 );
-currentid = $(this).attr('id');
+currentid = $(parentplacename).attr('id');
 console.log(currentid);
 switch(currentid){
 case "1":
@@ -293,12 +303,14 @@ console.log("clicked");
 $('.placenamepopup').css(
 "display", "none"
 );
-$('.placename').css(
+$('.placename span').css(
 "border", "none"
 );
 });
 
-
+$('#badgen').click(function(){
+$('#etym').html("This name is not quite right. I think the algorithm has a bug. My reason is...");
+});
 
 console.log("//---------------------------- NAME ELEMENTS");
 
@@ -360,7 +372,7 @@ console.log("Generated small names.")
 for (g = 0; g < 5; g++) {
 if (percentageChance(20)) {
 oneword[g] = generateName(1,1).capitalize();
-} else if (percentageChance(55)) {
+} else if (percentageChance(80)) {
 oneword[g] = generateName(2,1).capitalize();
 } else {
 oneword[g] = generateName(3,1).capitalize();
@@ -398,10 +410,10 @@ placenamefinal3 = assignnameRandomly();
 console.log("Chosen placenames: " + placenamefinal1 + ", " + placenamefinal2 + ", " + placenamefinal3 + ".")
 
 //Add names to DOM.
-$('#1').html(placenamefinal1.capitalize());
-$('#2').html(placenamefinal2.capitalize());
-$('#3').html(placenamefinal3.capitalize());
-$('#4').html(placenamefinal4.capitalize());
+$('#1 span').html(placenamefinal1.capitalize());
+$('#2 span').html(placenamefinal2.capitalize());
+$('#3 span').html(placenamefinal3.capitalize());
+$('#4 span').html(placenamefinal4.capitalize());
 
 });
 
@@ -758,6 +770,7 @@ function optionalMutations(entry) {
 
 vowels = ["a", "e", "i", "o", "u"];
 consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
+var doublingcons = ["b", "d", "f", "g", "l", "m", "n", "p", "r", "s", "t"]
 namearray = entry.split("");
 console.log(namearray);
 
@@ -767,7 +780,7 @@ console.log(namearray);
 //Add a 'y' to a single clause.
 
 if (namearray.length < 6) {
-  if (percentageChance(35)) {
+  if (percentageChance(25)) {
     namearray.push("y");
     console.log("(" + entry + "): " + "Added a 'y' to a single clause name.")
   }
@@ -864,10 +877,16 @@ console.log ("Epenthesis: adding a consonant.")
 
 //Reset the consonant.
 consonanttocheck = "";
+var retries = 0;
 
 //Choose a consonant, and find it in the name. If it isn't there, choose another.
-while (namearray.includes(consonanttocheck) != true && namearray.length > 0) {
+while (namearray.includes(consonanttocheck) != true && namearray.length > 0
+&& doublingcons.includes(consonanttocheck) == false
+&& namearray.indexOf(consonanttocheck) > 1
+&& retries < 20)
+{
 var consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+retries += 1
 }
 
 //Get the position in the array of the chosen consonant, and then double, replacing the original with the doubled entry.

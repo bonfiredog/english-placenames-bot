@@ -1,16 +1,35 @@
 Tweaks
 ======
 
-only certain consonants get doubled: b, d, f, g, l, m, n, p, r, s, t
-Make 'add y' less common.
-Consonants are not doubled at the start of a word or one letter in.
 swap vowels at end = nono? Or for any other.
-Second run through not helping...
 Not deleting three lots of letters (add new letters as array element, not in one array element.
 take chances to mutate down generally.
-epenthesis still getting stuck.
-Different OS image each time (random of 20)
-Line goes to it each time - make it 
-or add them onto a map at random?
-find the fake names - click on them to bring them up.
-Magna needs a space.
+Way too much 'y'. More on two-name?
+Repeating elements again - weird.
+
+
+
+
+Elements KEEP getting repeated - shouldn't be that much.
+Still hanging on epenthesis, 
+No doubling at the start.
+The repeating of elements does mean that they share elements on the map, though.
+Don't swap an n after a k.
+More 'smoothing' of three-clause names. Sometimes smooth into two syllables.
+only tweak vowel if it isn't next to another vowel.
+no c -> g lenition or n -> m unless at start of word.
+Only 5 retries for each of these so doesn't get stuck.
+get rid of three letters not working (esp. second time)
+
+## To Do
+
+- Keep making tweaks until names are generating well.
+- Capture 20 full-size screenshots of OS maps (fullest resolution before going sub-Explorer, roughly 1800px wide).
+- Remove a few key placenames.
+- Identify 4 'slots' for fake names on each map. Save px coordinates for each in script.
+- Check the site's performance.
+- Add copy/change where needed.
+- Test with people?
+- Create Github repo.
+- Make site responsive (not usable on phones)
+- Publish, achievements list.
