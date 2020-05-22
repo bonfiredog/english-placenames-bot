@@ -1,25 +1,14 @@
 Tweaks
 ======
 
-swap vowels at end = nono? Or for any other.
-Not deleting three lots of letters (add new letters as array element, not in one array element.
-take chances to mutate down generally.
-Way too much 'y'. More on two-name?
 Repeating elements again - weird.
-
-
-
-
-Elements KEEP getting repeated - shouldn't be that much.
-Still hanging on epenthesis, 
-No doubling at the start.
 The repeating of elements does mean that they share elements on the map, though.
-Don't swap an n after a k.
 More 'smoothing' of three-clause names. Sometimes smooth into two syllables.
 only tweak vowel if it isn't next to another vowel.
 no c -> g lenition or n -> m unless at start of word.
-Only 5 retries for each of these so doesn't get stuck.
-get rid of three letters not working (esp. second time)
+Placenames fuzzy on laptop - to do with odd screen resolution? Test at other resolutions: may nee dto make text-shadw responsive. (Test on Sarah's machine).
+Even less chance of mutation?
+Finding syllables - mutating more for three+?
 
 ## To Do
 

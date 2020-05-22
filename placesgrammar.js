@@ -18,6 +18,7 @@ var chosenending = "";
 var vowels = [];
 var consonants = [];
 var namearray = [];
+var loopretry = 0;
 //-----------------------------
 var chance;
 var finalsmallword;
@@ -359,7 +360,7 @@ console.log("//---------------------------- NAME POOL GENERATION");
 
 //Generate a set of small words, of one clause.
 
-for (g = 0; g < 5; g++) {
+for (g = 0; g < 10; g++) {
 smallword[g] = generateName(1, 1).capitalize();
 console.log("Small name generated: " + smallword[g]);
 }
@@ -369,7 +370,7 @@ console.log("Generated small names.")
 
 //Generate a set of words with one to three clauses (with a possible name variant).
 
-for (g = 0; g < 5; g++) {
+for (g = 0; g < 10; g++) {
 if (percentageChance(20)) {
 oneword[g] = generateName(1,1).capitalize();
 } else if (percentageChance(80)) {
@@ -379,7 +380,7 @@ oneword[g] = generateName(3,1).capitalize();
 oneword[g] = optionalMutations(oneword[g]);
 }
 
-if (percentageChance(35)) {
+if (percentageChance(50)) {
 oneword[g] = nameVariants(oneword[g], oneword[g - 1], smallword[randomChoiceFromArray(smallword)]);
 }
 console.log("One-word name generated: " + oneword[g]);
@@ -389,7 +390,7 @@ console.log("Generated one-word names.")
 
 //Generate a set of two-word names.
 
-for (g = 0; g < 5; g++) {
+for (g = 0; g < 10; g++) {
 if (percentageChance(50)) {
 twowords[g]  = generateName(2,2).capitalize();
 twowords[g] = optionalMutations(twowords[g]);
@@ -424,7 +425,7 @@ $('#4 span').html(placenamefinal4.capitalize());
 
 function assignnameRandomly() {
 var chance3 = Math.floor(Math.random() * 4) + 1;
-
+console.log(chance3);
 switch(chance3) {
 case 1:
 return smallword[randomChoiceFromArray(smallword)];
@@ -780,7 +781,7 @@ console.log(namearray);
 //Add a 'y' to a single clause.
 
 if (namearray.length < 6) {
-  if (percentageChance(25)) {
+  if (percentageChance(10)) {
     namearray.push("y");
     console.log("(" + entry + "): " + "Added a 'y' to a single clause name.")
   }
@@ -789,16 +790,21 @@ if (namearray.length < 6) {
 //------------------------------------------
 
 //Chance to swap vowels.
-if (percentageChance(20)) {
+if (percentageChance(15)) {
 
-voweltocheck = "";
+voweltocheck = vowels[randomChoiceFromArray(vowels)];
+retries = 10;
 
-//Choose a vowel, and find it in the name. If it isn't there, choose another.
-while (namearray.includes(voweltocheck) == false) {
-var voweltocheck = vowels[randomChoiceFromArray(vowels)];
-if (namearray.length === 0) {
-break;
-}
+//Choose a vowel, and find it in the name. If it isn't there, or is at the end of the name, choose another.
+while (
+(namearray.includes(voweltocheck) == false
+|| (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) >= (namearray.length-1))
+)
+&& (retries < 10)
+)
+{
+voweltocheck = vowels[randomChoiceFromArray(vowels)];
+retries += 1;
 }
 
 //Substitute it for another.
@@ -812,7 +818,7 @@ console.log("(" + entry + "): " + "Substituted " + voweltocheck + " for " + vowe
 
 //Chance to change a vowel or consonant (Lenition and fortition)
 
-if (percentageChance(20)) {
+if (percentageChance(15)) {
 
 var swapchart1 = ["t","p","v","z","e","a","i","o","u","e","b","c","f","f","n","p","t","i"];
 var swapchart2 = ["d","b","f","s","a","e","e","u","o","i","v","g","h","th","m","f","ght","y"];
@@ -833,7 +839,14 @@ if (swapchart1.includes(namearray[y])) {
 
 //Swap one of the letters at random.
 
-var chartoswap = randomChoiceFromArray(swapsinname);
+var chartoswap = "";
+
+while (chartoswap = "" || namearray.indexOf(chartoswap) >= (namearray.length-1
+||(chartoswap == "k" && namearray[namearray.indexOf(chartoswap) + 1] == "n")
+)) {
+chartoswap = randomChoiceFromArray(swapsinname);
+}
+
 var originalpos = namearray.indexOf(swapsinname[chartoswap]);
 
 namearray[originalpos] = sinswap[chartoswap];
@@ -845,7 +858,7 @@ console.log("(" + entry + "): " + "Lenition/Fortition: Swapped " + swapsinname[c
 
 //Chance for an addition of a vowel or consonant. (Epenthesis)
 
-if (percentageChance(20)) {
+if (percentageChance(10)) {
 
 var vowelorcon = ["v","c"];
 var epenchoice = vowelorcon[randomChoiceFromArray(vowelorcon)];
@@ -856,17 +869,22 @@ if (epenchoice == "v") {
 console.log("Epenthesis: adding a vowel.")
 
 //Reset the vowel.
-voweltocheck = "";
+voweltocheck = vowels[randomChoiceFromArray(vowels)];
+retries = 10;
 
 //Choose a vowel, and find it in the name. If it isn't there, choose another.
-while (namearray.includes(voweltocheck) != true && namearray.length > 0) {
-var voweltocheck = vowels[randomChoiceFromArray(vowels)];
+while (
+namearray.includes(voweltocheck) != true
+|| (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) < 1)
+|| (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) >= (namearray.length-1))
+&& retries < 10) {
+voweltocheck = vowels[randomChoiceFromArray(vowels)];
+retries += 1;
 }
 
 //Get the position in the array of the chosen vowel, and then double, replacing the original with the doubled entry.
 var vowelpos2 = namearray.indexOf(voweltocheck);
-var vowelinsert = voweltocheck + voweltocheck;
-namearray[vowelpos2] = vowelinsert;
+namearray.splice(vowelpos2,0,voweltocheck);
 
 console.log("(" + entry + "): " + "Doubled " + voweltocheck + ".");
 
@@ -876,23 +894,25 @@ console.log("(" + entry + "): " + "Doubled " + voweltocheck + ".");
 console.log ("Epenthesis: adding a consonant.")
 
 //Reset the consonant.
-consonanttocheck = "";
-var retries = 0;
+consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+retries = 0;
 
-//Choose a consonant, and find it in the name. If it isn't there, choose another.
-while (namearray.includes(consonanttocheck) != true && namearray.length > 0
-&& doublingcons.includes(consonanttocheck) == false
-&& namearray.indexOf(consonanttocheck) > 1
-&& retries < 20)
+//Choose a consonant, and find it in the name. If it isn't there, isn't a fit consonant for doubling, or is the first letter, choose another.
+while (
+(namearray.includes(consonanttocheck) != true
+|| doublingcons.includes(consonanttocheck) == false
+|| namearray.indexOf(consonanttocheck) < 1
+|| (namearray.indexOf(consonanttocheck) >= (namearray.length-2)))
+&& retries < 10
+)
 {
 var consonanttocheck = consonants[randomChoiceFromArray(consonants)];
-retries += 1
+retries += 1;
 }
 
 //Get the position in the array of the chosen consonant, and then double, replacing the original with the doubled entry.
 var conpos2 = namearray.indexOf(consonanttocheck);
-var coninsert = consonanttocheck + consonanttocheck;
-namearray[conpos2] = coninsert;
+namearray.splice(conpos2,0,consonanttocheck);
 console.log("(" + entry + "): " + "Doubled " + consonanttocheck + ".");
 }
 }
@@ -903,7 +923,7 @@ console.log("(" + entry + "): " + "Doubled " + consonanttocheck + ".");
 
 var previousLetter = "";
 
-if (percentageChance(20)) {
+if (percentageChance(15)) {
 for (i=0; i < namearray.length; i++) {
 previousLetter = namearray[i - 1];
 if (previousLetter == namearray[i]) {
