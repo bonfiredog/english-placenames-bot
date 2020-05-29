@@ -65,6 +65,12 @@ var mappopy4;
 //-----------------------------
 
 var timer1;
+var clicked1 = false;
+var clicked2 = false;
+var clicked3 = false;
+var clicked4 = false;
+var totalclicked = 0;
+var clicktext = "0/4 Places Found";
 
 
 //-----------------------------
@@ -164,7 +170,7 @@ $(this).css({
 });
 
 $('#refreshbutton span').css({
-"transform": "rotate(180deg)"
+"transform": "rotate(360deg)"
 });
 
 }, function() {
@@ -188,7 +194,7 @@ $('#refreshbutton span').css({
 
 //Load a random map and its variables.
 
-var mapnumber = getRandomArbitrary(1,1);
+var mapnumber = getRandomArbitrary(8,8);
 console.log("mapnum = " + mapnumber);
 switch(mapnumber) {
 case 1:
@@ -221,6 +227,668 @@ mappopy4 = "62%";
 $('#4').addClass("three");
 $('#4').addClass("left");
 break;
+
+//----------------------------------
+
+case 2:
+mapurl = "maps/map2.png";
+mapx1 = "70%";
+mapy1 = "4.5%";
+mappopx1 = "59%";
+mappopy1 = "7%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "58.1%";
+mapy2 = "55.5%";
+mappopx2 = "32%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "10.5%";
+mapy3 = "20.5%";
+mappopx3 = "13%";
+mappopy3 = "24%";
+$('#3').addClass("one");
+$('#3').addClass("right");
+
+mapx4 = "93.6%";
+mapy4 = "80%";
+mappopx4 = "68%";
+mappopy4 = "51%";
+$('#4').addClass("three");
+$('#4').addClass("right");
+break;
+
+//----------------------------------
+
+case 3:
+mapurl = "maps/map3.png";
+mapx1 = "54.7%";
+mapy1 = "23.4%";
+mappopx1 = "29%";
+mappopy1 = "20%";
+$('#1').addClass("one");
+$('#1').addClass("right");
+
+mapx2 = "48%";
+mapy2 = "38.8%";
+mappopx2 = "36%";
+mappopy2 = "41%";
+$('#2').addClass("one ");
+$('#2').addClass("right");
+
+mapx3 = "77.8%";
+mapy3 = "12%";
+mappopx3 = "57%";
+mappopy3 = "15%";
+$('#3').addClass("three");
+$('#3').addClass("right");
+
+mapx4 = "26.2%";
+mapy4 = "92%";
+mappopx4 = "13%";
+mappopy4 = "49%";
+$('#4').addClass("three");
+$('#4').addClass("right");
+break;
+
+//----------------------------------
+
+case 4:
+mapurl = "maps/map4.png";
+mapx1 = "-2%";
+mapy1 = "69.2%";
+mappopx1 = "6%";
+mappopy1 = "25%";
+$('#1').addClass("three");
+$('#1').addClass("left");
+
+mapx2 = "8.5%";
+mapy2 = "82.5%";
+mappopx2 = "11%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "52.7%";
+mapy3 = "94.2%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("right");
+
+mapx4 = "47.4%";
+mapy4 = "30%";
+mappopx4 = "46%";
+mappopy4 = "34%";
+$('#4').addClass("four");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 5:
+mapurl = "maps/map5.png";
+mapx1 = "85.5%";
+mapy1 = "13%";
+mappopx1 = "59%";
+mappopy1 = "13%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "80.5%";
+mapy2 = "67.5%";
+mappopx2 = "64%";
+mappopy2 = "48%";
+$('#2').addClass("two");
+$('#2').addClass("left");
+
+mapx3 = "68.7%";
+mapy3 = "75%";
+mappopx3 = "42%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("right");
+
+mapx4 = "39.5%";
+mapy4 = "61%";
+mappopx4 = "24%";
+mappopy4 = "50%";
+$('#4').addClass("four");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 6:
+mapurl = "maps/map6.png";
+mapx1 = "93.3%";
+mapy1 = "6%";
+mappopx1 = "68 %";
+mappopy1 = "8%";
+$('#1').addClass("one");
+$('#1').addClass("right");
+
+mapx2 = "8.3%";
+mapy2 = "69.5%";
+mappopx2 = "12%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "65.7%";
+mapy3 = "70%";
+mappopx3 = "39%";
+mappopy3 = "49%";
+$('#3').addClass("two");
+$('#3').addClass("right");
+
+mapx4 = "30.5%";
+mapy4 = "34%";
+mappopx4 = "15%";
+mappopy4 = "31%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 7:
+mapurl = "maps/map7.png";
+mapx1 = "70.4%";
+mapy1 = "26%";
+mappopx1 = "66%";
+mappopy1 = "30%";
+$('#1').addClass("two");
+$('#1').addClass("left");
+
+mapx2 = "41.5%";
+mapy2 = "10.7%";
+mappopx2 = "29%";
+mappopy2 = "14%";
+$('#2').addClass("two");
+$('#2').addClass("left");
+
+mapx3 = "58.7%";
+mapy3 = "70.6%";
+mappopx3 = "33%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("right");
+
+mapx4 = "24.5%";
+mapy4 = "7%";
+mappopx4 = "13%";
+mappopy4 = "12%";
+$('#4').addClass("four");
+$('#4').addClass("right");
+break;
+
+//----------------------------------
+
+case 8:
+mapurl = "maps/map8.png";
+mapx1 = "91.6%";
+mapy1 = "77.5%";
+mappopx1 = "66%";
+mappopy1 = "43%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "51.5%";
+mapy2 = "28.5%";
+mappopx2 = "44%";
+mappopy2 = "32%";
+$('#2').addClass("two");
+$('#2').addClass("left");
+
+mapx3 = "3.6%";
+mapy3 = "88.5%";
+mappopx3 = "19%";
+mappopy3 = "49%";
+$('#3').addClass("one");
+$('#3').addClass("left");
+
+mapx4 = "58%";
+mapy4 = "79.5%";
+mappopx4 = "32%";
+mappopy4 = "62%";
+$('#4').addClass("four");
+$('#4').addClass("right");
+break;
+
+//----------------------------------
+
+case 9:
+mapurl = "maps/map9.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 10:
+mapurl = "maps/map10.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 11:
+mapurl = "maps/map11.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 12:
+mapurl = "maps/map12.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 13:
+mapurl = "maps/map13.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 14:
+mapurl = "maps/map14.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 15:
+mapurl = "maps/map15.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 16:
+mapurl = "maps/map16.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 17:
+mapurl = "maps/map17.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 18:
+mapurl = "maps/map18.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 19:
+mapurl = "maps/map19.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 20:
+mapurl = "maps/map20.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
+
+case 21:
+mapurl = "maps/map21.png";
+mapx1 = "65.3%";
+mapy1 = "17%";
+mappopx1 = "53%";
+mappopy1 = "20%";
+$('#1').addClass("two");
+$('#1').addClass("right");
+
+mapx2 = "27.5%";
+mapy2 = "89.5%";
+mappopx2 = "29%";
+mappopy2 = "48%";
+$('#2').addClass("one");
+$('#2').addClass("right");
+
+mapx3 = "62.7%";
+mapy3 = "91%";
+mappopx3 = "48%";
+mappopy3 = "49%";
+$('#3').addClass("three");
+$('#3').addClass("left");
+
+mapx4 = "-0.5%";
+mapy4 = "59%";
+mappopx4 = "13%";
+mappopy4 = "62%";
+$('#4').addClass("three");
+$('#4').addClass("left");
+break;
+
+//----------------------------------
 
 }
 
@@ -265,6 +933,10 @@ $('#pop').css({
 "left": mappopx1,
 "top": mappopy1
 });
+if (clicked1 == false) {
+clicked1 = true;
+totalclicked += 1;
+}
 nametoadd = placenamefinal1;
 break;
 case "2":
@@ -272,6 +944,10 @@ $('#pop').css({
 "left": mappopx2,
 "top": mappopy2
 });
+if (clicked2 == false) {
+clicked2 = true;
+totalclicked += 1;
+}
 nametoadd = placenamefinal2;
 break;
 case "3":
@@ -279,6 +955,10 @@ $('#pop').css({
 "left": mappopx3,
 "top": mappopy3
 });
+if (clicked3 == false) {
+clicked3 = true;
+totalclicked += 1;
+}
 nametoadd = placenamefinal3;
 break;
 case "4":
@@ -286,15 +966,23 @@ $('#pop').css({
 "left": mappopx4,
 "top": mappopy4
 });
+if (clicked4 == false) {
+clicked4 = true;
+totalclicked += 1;
+}
 nametoadd = placenamefinal4;
 break;
 }
+
+console.log(totalclicked);
 
 $('#pop input').attr('value', nametoadd);
 
 $('#pop').css(
 "display", "block"
 );
+
+updatescoreText();
 });
 
 
@@ -310,7 +998,7 @@ $('.placename span').css(
 });
 
 $('#badgen').click(function(){
-$('#etym').html("This name is not quite right. I think the algorithm has a bug. My reason is...");
+$('#etym').html("This name is not quite right. I think the algorithm has a bug. My reason for this is...");
 });
 
 console.log("//---------------------------- NAME ELEMENTS");
@@ -377,7 +1065,6 @@ oneword[g] = generateName(1,1).capitalize();
 oneword[g] = generateName(2,1).capitalize();
 } else {
 oneword[g] = generateName(3,1).capitalize();
-oneword[g] = optionalMutations(oneword[g]);
 }
 
 if (percentageChance(50)) {
@@ -393,7 +1080,6 @@ console.log("Generated one-word names.")
 for (g = 0; g < 10; g++) {
 if (percentageChance(50)) {
 twowords[g]  = generateName(2,2).capitalize();
-twowords[g] = optionalMutations(twowords[g]);
 } else {
 twowords[g]  = generateName(1,2).capitalize();
 }
@@ -793,7 +1479,7 @@ if (namearray.length < 6) {
 if (percentageChance(15)) {
 
 voweltocheck = vowels[randomChoiceFromArray(vowels)];
-retries = 10;
+retries = 0;
 
 //Choose a vowel, and find it in the name. If it isn't there, or is at the end of the name, choose another.
 while (
@@ -841,11 +1527,15 @@ if (swapchart1.includes(namearray[y])) {
 
 var chartoswap = "";
 
-while (chartoswap = "" || namearray.indexOf(chartoswap) >= (namearray.length-1
-||(chartoswap == "k" && namearray[namearray.indexOf(chartoswap) + 1] == "n")
-)) {
+//while (chartoswap == "" || namearray.indexOf(chartoswap) >= (namearray.length-1) || (chartoswap == "k" && namearray[namearray.indexOf(chartoswap) + 1] == "n"))
+
+while (chartoswap = ""
+|| ((chartoswap == "c") || (chartoswap == "n") && (namearray.indexOf(chartoswap) > 0))
+){
 chartoswap = randomChoiceFromArray(swapsinname);
 }
+//
+
 
 var originalpos = namearray.indexOf(swapsinname[chartoswap]);
 
@@ -869,15 +1559,17 @@ if (epenchoice == "v") {
 console.log("Epenthesis: adding a vowel.")
 
 //Reset the vowel.
-voweltocheck = vowels[randomChoiceFromArray(vowels)];
-retries = 10;
+voweltocheck = "";
+retries = 0;
 
 //Choose a vowel, and find it in the name. If it isn't there, choose another.
 while (
 namearray.includes(voweltocheck) != true
 || (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) < 1)
 || (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) >= (namearray.length-1))
-&& retries < 10) {
+|| (namearray.indexOf(voweltocheck) <= 0)
+&& retries < 10
+) {
 voweltocheck = vowels[randomChoiceFromArray(vowels)];
 retries += 1;
 }
@@ -894,7 +1586,7 @@ console.log("(" + entry + "): " + "Doubled " + voweltocheck + ".");
 console.log ("Epenthesis: adding a consonant.")
 
 //Reset the consonant.
-consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+consonanttocheck = "";
 retries = 0;
 
 //Choose a consonant, and find it in the name. If it isn't there, isn't a fit consonant for doubling, or is the first letter, choose another.
@@ -1162,4 +1854,9 @@ setTimeout(resetsubmit2, 2000);
 
 function resetsubmit2(){
 $('#submitbutton').html("&#10132; Send");
+}
+
+function updatescoreText() {
+clicktext = totalclicked.toString() + "/4 Places Found";
+$('#clicktext').html(clicktext);
 }

@@ -69,11 +69,12 @@ height:96%;
 margin-top:2%;
 margin-bottom:2%;
 border: 6px double #00B9F2;
+overflow:hidden;
 }
 
 #legendspace {
 width:1800px;
-height:250px;
+height:264px;
 border-bottom:solid 4px black;
 opacity:0.9;
 z-index:3;
@@ -221,6 +222,7 @@ padding-right:1%;
 
 .placename span {
 width:max-content;
+background-color:rgba(255,255,255,0.5);
 }
 
 .legendentry {
@@ -253,6 +255,9 @@ width:14%;
 
 .placename span {
 cursor:pointer;
+max-width:110px;
+word-wrap: break-word;
+display:inline-block;
 }
 
 .right {
@@ -285,6 +290,14 @@ font-weight: bolder;
 transform: scale(100%,118%);
 }
 
+.four {
+font-size: 0.75rem;
+letter-spacing: -0.5px;
+text-shadow: 0 0 0.7px #000;
+font-weight: bolder;
+transform: scale(100%,118%);
+}
+
 .placenamepopup {
 position:absolute;
 background-color:white;
@@ -298,6 +311,16 @@ width:400px;
 border: 6px double #00B9F2;
 display:none;
 z-index:2;
+height: 395px;
+}
+
+#clicktext {
+width: max-content;
+color: #CA0061;
+border: 3px double #CA0061;
+text-align: center;
+font-size: 1rem;
+padding: 1%;
 }
 
 #placenamerepo {

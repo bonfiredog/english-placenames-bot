@@ -1,24 +1,15 @@
-Tweaks
-======
-
-Repeating elements again - weird.
-The repeating of elements does mean that they share elements on the map, though.
-More 'smoothing' of three-clause names. Sometimes smooth into two syllables.
-only tweak vowel if it isn't next to another vowel.
-no c -> g lenition or n -> m unless at start of word.
-Placenames fuzzy on laptop - to do with odd screen resolution? Test at other resolutions: may nee dto make text-shadw responsive. (Test on Sarah's machine).
-Even less chance of mutation?
-Finding syllables - mutating more for three+?
-
 ## To Do
 
-- Keep making tweaks until names are generating well.
+
+
 - Capture 20 full-size screenshots of OS maps (fullest resolution before going sub-Explorer, roughly 1800px wide).
 - Remove a few key placenames.
 - Identify 4 'slots' for fake names on each map. Save px coordinates for each in script.
-- Check the site's performance.
-- Add copy/change where needed.
+
+
+
 - Test with people?
 - Create Github repo.
 - Make site responsive (not usable on phones)
 - Publish, achievements list.
+- Keep making tweaks until names are generating well.
