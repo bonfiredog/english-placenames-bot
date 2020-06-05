@@ -194,7 +194,7 @@ $('#refreshbutton span').css({
 
 //Load a random map and its variables.
 
-var mapnumber = getRandomArbitrary(8,8);
+var mapnumber = getRandomArbitrary(1,9);
 console.log("mapnum = " + mapnumber);
 switch(mapnumber) {
 case 1:
@@ -463,33 +463,33 @@ break;
 
 case 9:
 mapurl = "maps/map9.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+mapx1 = "2.2%";
+mapy1 = "13.2%";
+mappopx1 = "8%";
+mappopy1 = "16%";
+$('#1').addClass("one");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
-$('#2').addClass("right");
+mapx2 = "23.8%";
+mapy2 = "17.5%";
+mappopx2 = "11%";
+mappopy2 = "21%";
+$('#2').addClass("two");
+$('#2').addClass("left");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
+mapx3 = "49.4%";
+mapy3 = "58.5%";
+mappopx3 = "24%";
 mappopy3 = "49%";
 $('#3').addClass("three");
-$('#3').addClass("left");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mapx4 = "38.5%";
+mapy4 = "35%";
+mappopx4 = "18%";
+mappopy4 = "41%";
+$('#4').addClass("four");
+$('#4').addClass("right");
 break;
 
 //----------------------------------

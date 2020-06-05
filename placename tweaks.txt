@@ -7,6 +7,7 @@
 - Identify 4 'slots' for fake names on each map. Save px coordinates for each in script.
 
 
+- Change OS logo? and remove R symbol.
 
 - Test with people?
 - Create Github repo.
