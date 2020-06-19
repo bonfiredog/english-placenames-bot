@@ -194,7 +194,7 @@ $('#refreshbutton span').css({
 
 //Load a random map and its variables.
 
-var mapnumber = getRandomArbitrary(1,9);
+var mapnumber = getRandomArbitrary(1,20);
 console.log("mapnum = " + mapnumber);
 switch(mapnumber) {
 case 1:
@@ -496,65 +496,65 @@ break;
 
 case 10:
 mapurl = "maps/map10.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+mapx1 = "74.9%";
+mapy1 = "68.6%";
+mappopx1 = "69%";
+mappopy1 = "24%";
+$('#1').addClass("one");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
+mapx2 = "29.4%";
+mapy2 = "50.5%";
+mappopx2 = "4%";
 mappopy2 = "48%";
 $('#2').addClass("one");
 $('#2').addClass("right");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
+mapx3 = "55.7%";
+mapy3 = "24%";
 mappopx3 = "48%";
-mappopy3 = "49%";
-$('#3').addClass("three");
-$('#3').addClass("left");
+mappopy3 = "28%";
+$('#3').addClass("one");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mapx4 = "72%";
+mapy4 = "75.1%";
+mappopx4 = "45%";
+mappopy4 = "51%";
+$('#4').addClass("four");
+$('#4').addClass("right");
 break;
 
 //----------------------------------
 
 case 11:
 mapurl = "maps/map11.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
+mapx1 = "82.3%";
+mapy1 = "13.6%";
+mappopx1 = "56%";
+mappopy1 = "9%";
 $('#1').addClass("two");
 $('#1').addClass("right");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
+mapx2 = "31.1%";
+mapy2 = "84.5%";
+mappopx2 = "47%";
 mappopy2 = "48%";
 $('#2').addClass("one");
-$('#2').addClass("right");
+$('#2').addClass("left");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
+mapx3 = "86.9%";
+mapy3 = "72.4%";
+mappopx3 = "60%";
 mappopy3 = "49%";
-$('#3').addClass("three");
-$('#3').addClass("left");
+$('#3').addClass("one");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
+mapx4 = "11.1%";
+mapy4 = "44.5%";
 mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
+mappopy4 = "48%";
+$('#4').addClass("four");
 $('#4').addClass("left");
 break;
 
@@ -562,31 +562,31 @@ break;
 
 case 12:
 mapurl = "maps/map12.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
+mapx1 = "12%";
+mapy1 = "27%";
+mappopx1 = "14%";
 mappopy1 = "20%";
-$('#1').addClass("two");
+$('#1').addClass("one");
 $('#1').addClass("right");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
-$('#2').addClass("right");
+mapx2 = "57.5%";
+mapy2 = "18%";
+mappopx2 = "43%";
+mappopy2 = "13%";
+$('#2').addClass("two");
+$('#2').addClass("left");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
-$('#3').addClass("three");
-$('#3').addClass("left");
+mapx3 = "81.7%";
+mapy3 = "17%";
+mappopx3 = "55%";
+mappopy3 = "13%";
+$('#3').addClass("two");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
+mapx4 = "28%";
 mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
+mappopx4 = "43%";
+mappopy4 = "36%";
 $('#4').addClass("three");
 $('#4').addClass("left");
 break;
@@ -595,130 +595,130 @@ break;
 
 case 13:
 mapurl = "maps/map13.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+mapx1 = "71.7%";
+mapy1 = "72%";
+mappopx1 = "64%";
+mappopy1 = "28%";
+$('#1').addClass("one");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
+mapx2 = "84.1%";
+mapy2 = "78.7%";
+mappopx2 = "61%";
+mappopy2 = "33%";
+$('#2').addClass("three");
 $('#2').addClass("right");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
+mapx3 = "11.2%";
+mapy3 = "65%";
+mappopx3 = "11%";
+mappopy3 = "21%";
 $('#3').addClass("three");
-$('#3').addClass("left");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mapx4 = "25.6%";
+mapy4 = "11.5%";
+mappopx4 = "15%";
+mappopy4 = "15%";
+$('#4').addClass("four");
+$('#4').addClass("right");
 break;
 
 //----------------------------------
 
 case 14:
 mapurl = "maps/map14.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+mapx1 = "13.1%";
+mapy1 = "43%";
+mappopx1 = "24%";
+mappopy1 = "0%";
+$('#1').addClass("one");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
+mapx2 = "58.7%";
+mapy2 = "81.5%";
+mappopx2 = "33%";
+mappopy2 = "52%";
+$('#2').addClass("three");
 $('#2').addClass("right");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
-$('#3').addClass("three");
+mapx3 = "8.5%";
+mapy3 = "5%";
+mappopx3 = "24%";
+mappopy3 = "-2%";
+$('#3').addClass("four");
 $('#3').addClass("left");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mapx4 = "89.5%";
+mapy4 = "76%";
+mappopx4 = "64%";
+mappopy4 = "52%";
+$('#4').addClass("one");
+$('#4').addClass("right");
 break;
 
 //----------------------------------
 
 case 15:
 mapurl = "maps/map15.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
+mapx1 = "13.3%";
+mapy1 = "89%";
+mappopx1 = "7%";
+mappopy1 = "46%";
+$('#1').addClass("one");
 $('#1').addClass("right");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
+mapx2 = "56.5%";
+mapy2 = "85.5%";
+mappopx2 = "43%";
+mappopy2 = "42%";
 $('#2').addClass("one");
 $('#2').addClass("right");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
-$('#3').addClass("three");
+mapx3 = "28.7%";
+mapy3 = "23%";
+mappopx3 = "45%";
+mappopy3 = "20%";
+$('#3').addClass("one");
 $('#3').addClass("left");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mapx4 = "69%";
+mapy4 = "23.6%";
+mappopx4 = "61%";
+mappopy4 = "27%";
+$('#4').addClass("four");
+$('#4').addClass("right");
 break;
 
 //----------------------------------
 
 case 16:
 mapurl = "maps/map16.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
+mapx1 = "16.9%";
+mapy1 = "16.8%";
+mappopx1 = "19%";
 mappopy1 = "20%";
 $('#1').addClass("two");
 $('#1').addClass("right");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
+mapx2 = "47.5%";
+mapy2 = "11.5%";
 mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
+mappopy2 = "14%";
+$('#2').addClass("two");
 $('#2').addClass("right");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
+mapx3 = "42.2%";
+mapy3 = "90%";
+mappopx3 = "26%";
 mappopy3 = "49%";
-$('#3').addClass("three");
+$('#3').addClass("four");
 $('#3').addClass("left");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
+mapx4 = "36.5%";
+mapy4 = "50%";
+mappopx4 = "21%";
+mappopy4 = "40%";
 $('#4').addClass("three");
 $('#4').addClass("left");
 break;
@@ -727,65 +727,65 @@ break;
 
 case 17:
 mapurl = "maps/map17.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
+mapx1 = "76.5%";
+mapy1 = "50%";
+mappopx1 = "63%";
 mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+$('#1').addClass("three");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
+mapx2 = "28.5%";
+mapy2 = "21.1%";
 mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
+mappopy2 = "23%";
+$('#2').addClass("two");
 $('#2').addClass("right");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
+mapx3 = "75.7%";
+mapy3 = "90%";
+mappopx3 = "49%";
+mappopy3 = "51%";
 $('#3').addClass("three");
-$('#3').addClass("left");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mapx4 = "52.5%";
+mapy4 = "36%";
+mappopx4 = "39%";
+mappopy4 = "39%";
+$('#4').addClass("four");
+$('#4').addClass("right");
 break;
 
 //----------------------------------
 
 case 18:
 mapurl = "maps/map18.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+mapx1 = "83.3%";
+mapy1 = "4.5%";
+mappopx1 = "72%";
+mappopy1 = "7%";
+$('#1').addClass("three");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
+mapx2 = "53.5%";
+mapy2 = "20.5%";
+mappopx2 = "45%";
+mappopy2 = "23%";
 $('#2').addClass("one");
-$('#2').addClass("right");
+$('#2').addClass("left");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
-$('#3').addClass("three");
-$('#3').addClass("left");
+mapx3 = "50.7%";
+mapy3 = "8%";
+mappopx3 = "48.2%";
+mappopy3 = "10%";
+$('#3').addClass("four");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
+mapx4 = "16.9%";
+mapy4 = "29%";
 mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
+mappopy4 = "31%";
+$('#4').addClass("one");
 $('#4').addClass("left");
 break;
 
@@ -793,32 +793,32 @@ break;
 
 case 19:
 mapurl = "maps/map19.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
+mapx1 = "7.3%";
+mapy1 = "70%";
+mappopx1 = "12%";
+mappopy1 = "40%";
 $('#1').addClass("two");
 $('#1').addClass("right");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
-$('#2').addClass("right");
+mapx2 = "55.5%";
+mapy2 = "9.5%";
+mappopx2 = "45%";
+mappopy2 = "2%";
+$('#2').addClass("two");
+$('#2').addClass("left");
 
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
+mapx3 = "75.7%";
+mapy3 = "84%";
+mappopx3 = "62%";
 mappopy3 = "49%";
-$('#3').addClass("three");
+$('#3').addClass("four");
 $('#3').addClass("left");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
+mapx4 = "40.5%";
+mapy4 = "73%";
+mappopx4 = "25%";
+mappopy4 = "57%";
+$('#4').addClass("four");
 $('#4').addClass("left");
 break;
 
@@ -826,70 +826,36 @@ break;
 
 case 20:
 mapurl = "maps/map20.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
+mapx1 = "80.7%";
+mapy1 = "2%";
+mappopx1 = "66%";
+mappopy1 = "5%";
+$('#1').addClass("three");
+$('#1').addClass("left");
 
-mapx2 = "27.5%";
-mapy2 = "89.5%";
+mapx2 = "35.1%";
+mapy2 = "81.5%";
 mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
-$('#2').addClass("right");
+mappopy2 = "38%";
+$('#2').addClass("two");
+$('#2').addClass("left");
 
-mapx3 = "62.7%";
+mapx3 = "73.7%";
 mapy3 = "91%";
 mappopx3 = "48%";
 mappopy3 = "49%";
 $('#3').addClass("three");
-$('#3').addClass("left");
+$('#3').addClass("right");
 
-mapx4 = "-0.5%";
-mapy4 = "59%";
+mapx4 = "27.5%";
+mapy4 = "55%";
 mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
+mappopy4 = "58%";
+$('#4').addClass("four");
+$('#4').addClass("right");
 break;
 
 //----------------------------------
-
-case 21:
-mapurl = "maps/map21.png";
-mapx1 = "65.3%";
-mapy1 = "17%";
-mappopx1 = "53%";
-mappopy1 = "20%";
-$('#1').addClass("two");
-$('#1').addClass("right");
-
-mapx2 = "27.5%";
-mapy2 = "89.5%";
-mappopx2 = "29%";
-mappopy2 = "48%";
-$('#2').addClass("one");
-$('#2').addClass("right");
-
-mapx3 = "62.7%";
-mapy3 = "91%";
-mappopx3 = "48%";
-mappopy3 = "49%";
-$('#3').addClass("three");
-$('#3').addClass("left");
-
-mapx4 = "-0.5%";
-mapy4 = "59%";
-mappopx4 = "13%";
-mappopy4 = "62%";
-$('#4').addClass("three");
-$('#4').addClass("left");
-break;
-
-//----------------------------------
-
 }
 
 $('#mainmap').attr("src", mapurl);
@@ -919,12 +885,12 @@ $('#4').css({
 $('.placename span').click(function() {
 var parentplacename = $(this).parent();
 
-$('.placename span').css(
-"border", "none"
-);
-$(this).css(
-"border", "3px double #00B9F2"
-);
+$('.placename span').css({
+"background-color": "rgba(255,255,255,0.5)",
+});
+$(this).css({
+"background-color": "rgba(255,255,0,0.9)"
+});
 currentid = $(parentplacename).attr('id');
 console.log(currentid);
 switch(currentid){
@@ -992,9 +958,9 @@ console.log("clicked");
 $('.placenamepopup').css(
 "display", "none"
 );
-$('.placename span').css(
-"border", "none"
-);
+$('.placename span').css({
+"background-color": "rgba(255,255,255,0.5)",
+});
 });
 
 $('#badgen').click(function(){
