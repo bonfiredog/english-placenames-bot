@@ -1,16 +1,6 @@
 ## To Do
 
-
-
-- Capture 20 full-size screenshots of OS maps (fullest resolution before going sub-Explorer, roughly 1800px wide).
-- Remove a few key placenames.
-- Identify 4 'slots' for fake names on each map. Save px coordinates for each in script.
-
-
-- Change OS logo? and remove R symbol.
-
-- Test with people?
+- Final grammar tweak
 - Create Github repo.
-- Make site responsive (not usable on phones)
 - Publish, achievements list.
-- Keep making tweaks until names are generating well.
+

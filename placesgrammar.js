@@ -73,11 +73,9 @@ var totalclicked = 0;
 var clicktext = "0/4 Places Found";
 
 
+
+
 //-----------------------------
-
-
-
-
 $(document).ready(function() {
 
 // PAGE FUNCTIONS
@@ -93,10 +91,6 @@ $('#submitbutton').click(function(){
 $(this).html("Submitting...");
 timer1 = setTimeout(resetsubmit, 2000);
 });
-
-
-
-
 
 //Display resize icons if necessary.
 
@@ -1076,7 +1070,7 @@ $('#4 span').html(placenamefinal4.capitalize());
 // FUNCTIONS
 
 function assignnameRandomly() {
-var chance3 = Math.floor(Math.random() * 4) + 1;
+var chance3 = Math.floor(Math.random() * 6) + 1;
 console.log(chance3);
 switch(chance3) {
 case 1:
@@ -1084,9 +1078,11 @@ return smallword[randomChoiceFromArray(smallword)];
 break;
 case 2:
 case 3:
+case 4:
 return oneword[randomChoiceFromArray(oneword)];
 break;
-case 4:
+case 5:
+case 6:
 return twowords[randomChoiceFromArray(twowords)];
 break;
 }
@@ -1427,22 +1423,19 @@ var doublingcons = ["b", "d", "f", "g", "l", "m", "n", "p", "r", "s", "t"]
 namearray = entry.split("");
 console.log(namearray);
 
+var mutationChoice = getRandomArbitrary(1,7);
 
+switch (mutationChoice) {
+case 1:
+case 5:
+case 6:
+case 7:
 //--------------------------------------
+//Do nothing.
 
-//Add a 'y' to a single clause.
-
-if (namearray.length < 6) {
-  if (percentageChance(10)) {
-    namearray.push("y");
-    console.log("(" + entry + "): " + "Added a 'y' to a single clause name.")
-  }
-}
-
+case 2:
 //------------------------------------------
-
 //Chance to swap vowels.
-if (percentageChance(15)) {
 
 voweltocheck = vowels[randomChoiceFromArray(vowels)];
 retries = 0;
@@ -1464,13 +1457,12 @@ var vowelpos = namearray.indexOf(voweltocheck);
 var vowelsub = vowels[randomChoiceFromArray(vowels)];
 namearray[vowelpos] = vowelsub;
 console.log("(" + entry + "): " + "Substituted " + voweltocheck + " for " + vowelsub + " at position " + vowelpos + ".");
-}
+break;
+
+case 3:
 
 //------------------------------------------
-
 //Chance to change a vowel or consonant (Lenition and fortition)
-
-if (percentageChance(15)) {
 
 var swapchart1 = ["t","p","v","z","e","a","i","o","u","e","b","c","f","f","n","p","t","i"];
 var swapchart2 = ["d","b","f","s","a","e","e","u","o","i","v","g","h","th","m","f","ght","y"];
@@ -1501,20 +1493,17 @@ while (chartoswap = ""
 chartoswap = randomChoiceFromArray(swapsinname);
 }
 //
-
-
 var originalpos = namearray.indexOf(swapsinname[chartoswap]);
 
 namearray[originalpos] = sinswap[chartoswap];
 
 console.log("(" + entry + "): " + "Lenition/Fortition: Swapped " + swapsinname[chartoswap] + " for " + namearray[originalpos]);
-}
+break;
+
+case 4:
 
 //------------------------------------------
-
 //Chance for an addition of a vowel or consonant. (Epenthesis)
-
-if (percentageChance(10)) {
 
 var vowelorcon = ["v","c"];
 var epenchoice = vowelorcon[randomChoiceFromArray(vowelorcon)];
@@ -1530,10 +1519,10 @@ retries = 0;
 
 //Choose a vowel, and find it in the name. If it isn't there, choose another.
 while (
-namearray.includes(voweltocheck) != true
+(namearray.includes(voweltocheck) != true
 || (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) < 1)
 || (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) >= (namearray.length-1))
-|| (namearray.indexOf(voweltocheck) <= 0)
+|| (namearray.indexOf(voweltocheck) <= 0))
 && retries < 10
 ) {
 voweltocheck = vowels[randomChoiceFromArray(vowels)];
@@ -1573,6 +1562,16 @@ var conpos2 = namearray.indexOf(consonanttocheck);
 namearray.splice(conpos2,0,consonanttocheck);
 console.log("(" + entry + "): " + "Doubled " + consonanttocheck + ".");
 }
+break;
+
+}
+
+//Add a 'y' to a single clause.
+if (namearray.length < 6) {
+  if (percentageChance(15)) {
+    namearray.push("y");
+    console.log("(" + entry + "): " + "Added a 'y' to a single clause name.")
+}
 }
 
 //---------------------------------------
@@ -1581,7 +1580,7 @@ console.log("(" + entry + "): " + "Doubled " + consonanttocheck + ".");
 
 var previousLetter = "";
 
-if (percentageChance(15)) {
+if (percentageChance(10)) {
 for (i=0; i < namearray.length; i++) {
 previousLetter = namearray[i - 1];
 if (previousLetter == namearray[i]) {
@@ -1609,13 +1608,14 @@ namearray.splice(i,1);
 }
 }
 
-//--------------------------------------
-
 //Put the name array back into a string.
 
 var putbackentry = namearray.join("");
 return putbackentry;
 }
+
+
+
 //--------------------------------------------------
 
 function nameVariants(name, name2, smallname) {
@@ -1807,6 +1807,14 @@ break;
 }
 }
 
+$("#mainmap").ready(function(){
+$('#maploader').delay(1000).css(
+"opacity", "0"
+);
+});
+
+
+
 //-------------------------------------
 
 function getRandomArbitrary(min, max) {
@@ -1815,11 +1823,17 @@ function getRandomArbitrary(min, max) {
 function resetsubmit() {
 $('#etym').val("");
 $('#submitbutton').html("Submitted!");
-setTimeout(resetsubmit2, 2000);
+setTimeout(resetsubmit2, 1000);
 }
 
 function resetsubmit2(){
 $('#submitbutton').html("&#10132; Send");
+$('.placenamepopup').css(
+"display", "none"
+);
+$('.placename span').css({
+"background-color": "rgba(255,255,255,0.5)",
+});
 }
 
 function updatescoreText() {
