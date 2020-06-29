@@ -76,9 +76,18 @@ var clicktext = "0/4 Places Found";
 
 
 //-----------------------------
+
+window.onload = function(){
+$('#maploader').css(
+"opacity", "0"
+);
+};
+
 $(document).ready(function() {
 
 // PAGE FUNCTIONS
+
+
 
 // Reload page when button clicked.
 
@@ -1807,11 +1816,7 @@ break;
 }
 }
 
-$("#mainmap").ready(function(){
-$('#maploader').delay(1000).css(
-"opacity", "0"
-);
-});
+
 
 
 

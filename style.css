@@ -297,7 +297,7 @@ font-size: 0.54rem;
 letter-spacing: -0.5px;
 text-shadow: 0 0 0.86px #000;
 transform: scale(100%,105%);
-opacity:1;
+opacity:0.88;
 }
 
 .two {
@@ -314,7 +314,7 @@ letter-spacing: -0.5px;
 text-shadow: 0 0 0.7px #000;
 font-weight: bolder;
 transform: scale(100%,118%);
-opacity:0.88;
+opacity:0.85;
 }
 
 .four {

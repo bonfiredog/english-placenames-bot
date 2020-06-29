@@ -1,6 +1,0 @@
-## To Do
-
-- Final grammar tweak
-- Create Github repo.
-- Publish, achievements list.
-
