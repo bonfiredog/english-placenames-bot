@@ -1,9 +1,9 @@
-This work contains both elements of 1) my own work and 2) the work of The Ordnance Survey, which is subject to Crown Copyright.
+This work contains both elements of **1)** my own work and **2)** the work of The Ordnance Survey, which is subject to Crown Copyright.
 
 1) This includes all markup, code and style files, and all text.
 2) This includes the map images, the legend images, and the design of the logo (designed by me, but derivative of the OS logo design).
 
-1) All of my own work is subject to an **Unlicense**, as below:
+All of my own work is subject to an **Unlicense**, as below:
 
 ---
 
@@ -34,4 +34,4 @@ For more information, please refer to <https://unlicense.org>
 
 ---
 
-2) All assets belonging to the Ordnance Survey are subject to Crown Copyright, and are not to be used or redistributed for commercial or non-commercial use.
+All assets belonging to the Ordnance Survey are subject to Crown Copyright, and are not to be used or redistributed for commercial or non-commercial use.
