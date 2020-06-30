@@ -30,6 +30,7 @@ var placenamefinal2;
 var placenamefinal3;
 var placenamefinal4;
 var variantArray;
+var chosennamePool = [];
 
 //-----------------------------
 var currentid;
@@ -968,6 +969,9 @@ $('.placename span').css({
 
 $('#badgen').click(function(){
 $('#etym').html("This name is not quite right. I think the algorithm has a bug. My reason for this is...");
+$(this).css({
+"background-color": "gray",
+});
 });
 
 console.log("//---------------------------- NAME ELEMENTS");
@@ -1078,21 +1082,50 @@ $('#4 span').html(placenamefinal4.capitalize());
 
 // FUNCTIONS
 
-function assignnameRandomly() {
-var chance3 = Math.floor(Math.random() * 6) + 1;
+function assignnameRandomly(nameslot) {
+var currentnameConsidered = "";
+var chance3 = Math.floor(Math.random() * 8) + 1;
+
 console.log(chance3);
+
 switch(chance3) {
 case 1:
-return smallword[randomChoiceFromArray(smallword)];
+while (
+
+(currentnameConsidered == "") ||
+(chosennamePool.includes(currentnameConsidered) == true)
+) {
+currentnameConsidered = smallword[randomChoiceFromArray(smallword)];
+}
+chosennamePool.push(currentnameConsidered);
+return currentnameConsidered;
 break;
+
 case 2:
 case 3:
 case 4:
-return oneword[randomChoiceFromArray(oneword)];
+case 7:
+case 8:
+while (
+(currentnameConsidered == "") ||
+(chosennamePool.includes(currentnameConsidered) == true)
+) {
+currentnameConsidered = oneword[randomChoiceFromArray(oneword)];
+}
+chosennamePool.push(currentnameConsidered);
+return currentnameConsidered;
 break;
+
 case 5:
 case 6:
-return twowords[randomChoiceFromArray(twowords)];
+while (
+(currentnameConsidered == "") ||
+(chosennamePool.includes(currentnameConsidered) == true)
+) {
+currentnameConsidered = twowords[randomChoiceFromArray(twowords)];
+}
+chosennamePool.push(currentnameConsidered);
+return currentnameConsidered;
 break;
 }
 }
@@ -1429,6 +1462,7 @@ function optionalMutations(entry) {
 vowels = ["a", "e", "i", "o", "u"];
 consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
 var doublingcons = ["b", "d", "f", "g", "l", "m", "n", "p", "r", "s", "t"]
+var doublingvowels = ["e", "o"];
 namearray = entry.split("");
 console.log(namearray);
 
@@ -1529,20 +1563,27 @@ retries = 0;
 //Choose a vowel, and find it in the name. If it isn't there, choose another.
 while (
 (namearray.includes(voweltocheck) != true
-|| (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) < 1)
+|| (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) <= 1)
 || (namearray.includes(voweltocheck) == true && namearray.indexOf(voweltocheck) >= (namearray.length-1))
-|| (namearray.indexOf(voweltocheck) <= 0))
+)
 && retries < 10
 ) {
-voweltocheck = vowels[randomChoiceFromArray(vowels)];
+voweltocheck = doublingvowels[randomChoiceFromArray(doublingvowels)];
 retries += 1;
 }
 
+if (retries > 9) {
+voweltocheck = "";
+}
+
+if (voweltocheck != "") {
 //Get the position in the array of the chosen vowel, and then double, replacing the original with the doubled entry.
 var vowelpos2 = namearray.indexOf(voweltocheck);
 namearray.splice(vowelpos2,0,voweltocheck);
 
 console.log("(" + entry + "): " + "Doubled " + voweltocheck + ".");
+}
+
 
 // ADDING A CONSONANT
 } else if (epenchoice == "c") {
@@ -1556,23 +1597,28 @@ retries = 0;
 //Choose a consonant, and find it in the name. If it isn't there, isn't a fit consonant for doubling, or is the first letter, choose another.
 while (
 (namearray.includes(consonanttocheck) != true
-|| doublingcons.includes(consonanttocheck) == false
-|| namearray.indexOf(consonanttocheck) < 1
+|| (namearray.indexOf(consonanttocheck) <= 1)
 || (namearray.indexOf(consonanttocheck) >= (namearray.length-2)))
 && retries < 10
 )
 {
-var consonanttocheck = consonants[randomChoiceFromArray(consonants)];
+var consonanttocheck = doublingcons[randomChoiceFromArray(doublingcons)];
 retries += 1;
 }
 
+if (retries > 9) {
+consonanttocheck = "";
+}
+
+if (consonanttocheck != "" && namearray.includes(consonanttocheck)) {
 //Get the position in the array of the chosen consonant, and then double, replacing the original with the doubled entry.
 var conpos2 = namearray.indexOf(consonanttocheck);
 namearray.splice(conpos2,0,consonanttocheck);
 console.log("(" + entry + "): " + "Doubled " + consonanttocheck + ".");
 }
-break;
+}
 
+break;
 }
 
 //Add a 'y' to a single clause.
@@ -1614,6 +1660,15 @@ previousLetter = namearray[i - 1];
 if (previousLetter == namearray[i] && twolettersago == namearray[i]) {
 console.log("(" + entry + "): " + "Removed triplicate letters: " + namearray[i] + ".");
 namearray.splice(i,1);
+}
+}
+
+//Add a u after a q.
+
+if (namearray.includes("q")) {
+var qindex = namearray.indexOf("q");
+if (namearray[qindex + 1] != "u") {
+namearray.splice(qindex + 1, 0, "u")
 }
 }
 
@@ -1833,6 +1888,9 @@ setTimeout(resetsubmit2, 1000);
 
 function resetsubmit2(){
 $('#submitbutton').html("&#10132; Send");
+$('#badgen').css({
+"background-color": "#CA0061",
+});
 $('.placenamepopup').css(
 "display", "none"
 );
