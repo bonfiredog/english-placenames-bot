@@ -247,7 +247,7 @@ padding-right:1%;
 
 .placename span {
 width:max-content;
-background-color:rgba(255,255,255,0.5);
+background-color:rgba(255,255,255,0.3);
 }
 
 .legendentry {
@@ -424,6 +424,19 @@ transition: border-bottom 0.3s, border-left 0.3s, border-right 0.3s;
 transition-timing-function: ease-in-out;
 margin-top:2%;
 width:43%;
+}
+
+#cheatbox {
+	margin-top: 4%;
+	opacity: 0.2;
+	color: #303022;
+	font-size: 0.8rem;
+  transition:opacity 0.3s;
+  cursor:default;
+}
+
+#cheatbox:hover {
+  opacity:1;
 }
 
 #interact {
